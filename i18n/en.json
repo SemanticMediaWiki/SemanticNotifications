@@ -1,0 +1,39 @@
+{
+	"@metadata": {
+		"authors": [
+			"mwjames"
+		]
+	},
+	"smw-notifications-desc": "A Semantic MediaWiki extension that notifies about changes to structured data using the Echo(Notifications) extension.",
+	"smw-notifications-enity-specification-change-group": "entity specification change group",
+
+	"echo-category-title-smw-value-change": "Entity value change (SMW)",
+	"echo-pref-tooltip-smw-value-change": "Notify me when a change to a selected entity (property, category) value in Semantic MediaWiki occurs.",
+
+	"echo-category-title-smw-specification-change": "Entity specification change (SMW)",
+	"echo-pref-tooltip-smw-specification-change": "Notify me when a change to a entity (property, category) specification occurs in Semantic MediaWiki.",
+
+	"notification-header-smw-value-change": "<strong>$3</strong> had {{PLURAL:$4|a value modification|some value modifications}}",
+	"notification-bundle-header-smw-value-change": "<strong>$3</strong> and {{PLURAL:$4|one other page|$4 other pages|100=99+ other pages}} had {{PLURAL:$5|a modification|some modifications}}.",
+	"notification-body-smw-value-change": "\"$1\" {{PLURAL:$2|assignment was|assignments were}} altered.",
+
+	"notification-header-smw-specification-change": "<strong>$3</strong> was modified",
+	"notification-bundle-header-smw-specification-change": "<strong>$3</strong> and {{PLURAL:$4|one other page|$4 other pages|100=99+ other pages}} had {{PLURAL:$5|a modification|some modifications}}.",
+	"notification-body-smw-specification-change": "\"$1\" {{PLURAL:$2|assignment was|assignments were}} altered.",
+
+	"notification-smw-value-change": "smw-value-change...",
+	"notification-smw-value-change-flyout": "smw-value-change... flyout",
+	"notification-smw-value-change-email-subject": "{{PLURAL:$3|A page|Some pages}} on {{SITENAME}} you {{GENDER:$1|created}} {{PLURAL:$3|was|were}} {{GENDER:$2|connected}} to {{PLURAL:$3|a {{WBREPONAME}} item|{{WBREPONAME}} items}}",
+	"notification-smw-value-change-email-batch-body": "The page $1 was {{GENDER:$2|connected}} to $3.",
+
+	"smw-pa-property-predefined__notifications_on": "\"$1\" is a predefined property to specify a property to be watched for changes and is provided by the [https://www.semantic-mediawiki.org/wiki/Extension:Semantic_Notifications Semantic Notifications] extension.",
+	"smw-pa-property-predefined-long__notifications_on": "A \"+\" value assignment indicates that any value change is being monitored while a distinct value will only cause a change to this value to create a notification event.",
+	"smw-pa-property-predefined__notifications_to_group": "\"$1\" is a predefined property that defines an arbitrary group and is provided by the [https://www.semantic-mediawiki.org/wiki/Extension:Semantic_Notifications Semantic Notifications] extension.",
+	"smw-pa-property-predefined-long__notifications_to_group": "Values assigned to this property are going to be matched against the [[Property:Notifications group member of|Notifications group member of]] property to find possible users in case of a notification event.",
+	"smw-pa-property-predefined__notifications_group_member": "\"$1\" is a predefined property that declares a membership to a group and is provided by the [https://www.semantic-mediawiki.org/wiki/Extension:Semantic_Notifications Semantic Notifications] extension.",
+	"smw-pa-property-predefined-long__notifications_group_member": "The group corresponds to values specified by the [[Property:Notifications to group|Notifications to group]] property.",
+	"smw-pa-property-predefined__notifications_to": "",
+
+	"smw-notifications-datavalue-restricted-to-user": "Value assignments to the [[Property:Notifications group member of|Notifications group member of]] property is restricted to the User namespace.",
+	"smw-notifications-datavalue-invalid-group": "The \"$1\" group has not been registered (i.e. is not matchable to any [[Property:Notifications to group|Notifications to group]])."
+}

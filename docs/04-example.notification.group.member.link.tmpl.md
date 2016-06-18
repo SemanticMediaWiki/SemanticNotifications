@@ -1,0 +1,1 @@
+<noinclude>Internal helper template to create links from input generate by the [[Template:notifications.group.member]]</noinclude><includeonly><li>[[Special:SearchByProperty/Notifications to group/{{{value}}}|{{{value}}}]] ([[Special:SearchByProperty/Notifications group member of/{{{value}}}|other members]])</li></includeonly>
