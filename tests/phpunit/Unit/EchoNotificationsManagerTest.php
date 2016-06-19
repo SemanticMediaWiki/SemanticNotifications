@@ -17,14 +17,6 @@ use SMW\DIWikiPage;
  */
 class EchoNotificationsManagerTest extends \PHPUnit_Framework_TestCase {
 
-	public function testCanConstruct() {
-
-		$this->assertInstanceOf(
-			EchoNotificationsManager::class,
-			new EchoNotificationsManager()
-		);
-	}
-
 	public function testAddNotificationsDefinitions() {
 
 		$instance = new EchoNotificationsManager();
@@ -98,7 +90,7 @@ class EchoNotificationsManagerTest extends \PHPUnit_Framework_TestCase {
 			'revid'   => 1001
 		);
 
-		$echoEvent = $this->getMockBuilder( '\EchoEvent' )
+		$echoEvent = $this->getMockBuilder( \EchoEvent::class )
 			->disableOriginalConstructor()
 			->getMock();
 
@@ -127,11 +119,11 @@ class EchoNotificationsManagerTest extends \PHPUnit_Framework_TestCase {
 
 	public function testCreateEvent() {
 
-		$agent = $this->getMockBuilder( '\User' )
+		$agent = $this->getMockBuilder( \User::class )
 			->disableOriginalConstructor()
 			->getMock();
 
-		$title = $this->getMockBuilder( '\Title' )
+		$title = $this->getMockBuilder( \Title::class )
 			->disableOriginalConstructor()
 			->getMock();
 
@@ -144,7 +136,7 @@ class EchoNotificationsManagerTest extends \PHPUnit_Framework_TestCase {
 		$instance = new EchoNotificationsManager();
 
 		$this->assertInstanceOf(
-			'\EchoEvent',
+			\EchoEvent::class,
 			$instance->createEvent( $event )
 		);
 	}

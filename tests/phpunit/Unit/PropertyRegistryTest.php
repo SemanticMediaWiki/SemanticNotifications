@@ -16,22 +16,9 @@ use SMW\DIProperty;
  */
 class PropertyRegistryTest extends \PHPUnit_Framework_TestCase {
 
-	public function testCanConstruct() {
-
-		$this->assertInstanceOf(
-			PropertyRegistry::class,
-			new PropertyRegistry()
-		);
-	}
-
 	public function testRegistry() {
-
-		$propertyRegistry = $this->getMockBuilder( '\SMW\PropertyRegistry' )
-			->disableOriginalConstructor()
-			->getMock();
-
 		$instance = new PropertyRegistry();
-		$instance->register( $propertyRegistry );
+		$instance->register( $this->newSmwPropertyRegistry() );
 
 		$this->assertSame(
 			SMW_NOTIFICATIONS_ON,
@@ -52,6 +39,12 @@ class PropertyRegistryTest extends \PHPUnit_Framework_TestCase {
 			SMW_NOTIFICATIONS_TO,
 			DIProperty::findPropertyLabel( PropertyRegistry::NOTIFICATIONS_TO )
 		);
+	}
+
+	private function newSmwPropertyRegistry() {
+		return $this->getMockBuilder( \SMW\PropertyRegistry::class )
+			->disableOriginalConstructor()
+			->getMock();
 	}
 
 }
