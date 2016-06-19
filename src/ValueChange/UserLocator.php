@@ -16,8 +16,8 @@ use User;
 class UserLocator {
 
 	/**
-	 * Find out which for the properties/values that changed belongs to which
-	 * group and is assigned/matchable possible users.
+	 * Find out for which of the properties that have changed the assigned group
+	 * and for each group do locate its members(users).
 	 *
 	 * @see EchoUserLocator::locateArticleCreator
 	 * @since 1.0
@@ -35,22 +35,22 @@ class UserLocator {
 			return array();
 		}
 
-		$type = $event->getType();
 		$store = ApplicationFactory::getInstance()->getStore( '\SMW\SQLStore\SQLStore' );
+		$iteratorFactory = new IteratorFactory();
 
 		$notificationGroupsLocator = new NotificationGroupsLocator(
 			$store
 		);
 
-		$iteratorFactory = new IteratorFactory();
 		$subSemanticDataMatch = isset( $extra['subSemanticDataMatch'] ) ? $extra['subSemanticDataMatch'] : array();
+		$type = $event->getType();
 
 		if ( $type === ChangeNotifications::SPECIFICATION_CHANGE ) {
 			$groups = $notificationGroupsLocator->getSpecialGroupOnSpecificationChange();
 		} else {
 			// Find groups assigned to properties on a "lazy" request during the
 			// iteration process
-			$groups = $iteratorFactory->newCallbackIterator(
+			$groups = $iteratorFactory->newMappingIterator(
 				$extra['properties'],
 				$notificationGroupsLocator->getNotificationsToGroupListByCallback( $subSemanticDataMatch )
 			);
@@ -83,14 +83,14 @@ class UserLocator {
 		wfDebugLog( 'smw', 'Agent ' . $agentName );
 
 		// Access the user only on request by the iterator
-		$callbackIterator = $iteratorFactory->newCallbackIterator( $recursiveIteratorIterator, function( $recipient ) {
+		$mappingIterator = $iteratorFactory->newMappingIterator( $recursiveIteratorIterator, function( $recipient ) {
 			wfDebugLog( 'smw', 'User ' . $recipient );
 			return User::newFromName( $recipient, false );
 		} );
 
 		wfDebugLog( 'smw', __METHOD__ . ' procTime (sec): ' . round( ( microtime( true ) - $start ), 7 ) );
 
-		return $callbackIterator;
+		return $mappingIterator;
 	}
 
 }

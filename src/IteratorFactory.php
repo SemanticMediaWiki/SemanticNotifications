@@ -3,11 +3,10 @@
 namespace SMW\Notifications;
 
 use SMW\Store;
-use SMW\Notifications\Iterator\CallbackIterator;
+use SMW\Notifications\Iterator\MappingIterator;
 use SMW\Notifications\Iterator\CallbackRecursiveIterator;
 use SMW\Notifications\Iterator\RecursiveGroupMembersIterator;
 use SMW\Notifications\Iterator\ChildlessRecursiveIterator;
-use Closure;
 use Iterator;
 use RecursiveIterator;
 use RecursiveIteratorIterator;
@@ -24,12 +23,12 @@ class IteratorFactory {
 	 * @since 1.0
 	 *
 	 * @param array|Iterator $iterator
-	 * @param Closure $callback
+	 * @param callable $callback
 	 *
-	 * @return CallbackIterator
+	 * @return MappingIterator
 	 */
-	public function newCallbackIterator( $iterator, Closure $callback ) {
-		return new CallbackIterator( $iterator, $callback );
+	public function newMappingIterator( $iterator, callable $callback ) {
+		return new MappingIterator( $iterator, $callback );
 	}
 
 	/**

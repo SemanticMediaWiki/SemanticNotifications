@@ -13,14 +13,17 @@ use RuntimeException;
  *
  * @author mwjames
  */
-class CallbackIterator extends IteratorIterator {
+class MappingIterator extends IteratorIterator {
 
+	/**
+	 * @var callable
+	 */
 	private $callback;
 
 	/**
 	 * @since 1.0
 	 *
-	 * @param Iterator $iterator
+	 * @param Iterator|array $iterator
 	 * @param callable  $callback
 	 */
 	public function __construct( $iterator, callable $callback ) {

@@ -4,7 +4,7 @@ namespace SMW\Notifications\Tests;
 
 use RecursiveIterator;
 use SMW\Notifications\IteratorFactory;
-use SMW\Notifications\Iterator\CallbackIterator;
+use SMW\Notifications\Iterator\MappingIterator;
 use SMW\Notifications\Iterator\RecursiveGroupMembersIterator;
 use SMW\Notifications\Iterator\ChildlessRecursiveIterator;
 use RecursiveIteratorIterator;
@@ -21,13 +21,13 @@ use SMW\Store;
  */
 class IteratorFactoryTest extends \PHPUnit_Framework_TestCase {
 
-	public function testCanConstructCallbackIterator() {
+	public function testCanConstructMappingIterator() {
 
 		$instance = new IteratorFactory();
 
 		$this->assertInstanceOf(
-			CallbackIterator::class,
-			$instance->newCallbackIterator( [], function() {} )
+			MappingIterator::class,
+			$instance->newMappingIterator( [], function() {} )
 		);
 	}
 

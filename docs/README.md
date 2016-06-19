@@ -2,7 +2,7 @@
 
 - [workflow](01-workflow.md) contains a description of the expected workflow and settings in order to receive notifications
 - [tips](02-tips.md) contains some extra description on how to use the `Notifications on` property etc.
-- [technical notes](03-technical notes.md) some technical details about the provided hooks etc.
+- [technical notes](03-technical notes.md) some technical details about available hooks etc.
 
 ## Examples
 

@@ -1,17 +1,17 @@
 
 ## Iterators
 
-To avoid a possible large list of recipients are being generate ad-hoc during the
-change detection process, there are two iterators that will resolve a list of
-groups and subsequently its members on request.
+To avoid a possible large list of recipients being resolved ad-hoc during the
+change detection process, two iterators are provided to solve the list of groups and
+subsequently its members on request.
 
 The `UserLocator` is responsible for locating recipients of a notification event and
-is being resolved using a `CallbackIterator` which is then added to the `RecursiveGroupMembersIterator`
+is being resolved using a `MappingIterator` which is then added to the `RecursiveGroupMembersIterator`
 to iteratively resolve a single group and its members during a recursive processing.
 
 ```
 	// Find the groups related to changed properties
-	$groups = $iteratorFactory->newCallbackIterator(
+	$groups = $iteratorFactory->newMappingIterator(
 		$extra['properties'],
 		$notificationGroupsLocator->getNotificationsToGroupListByCallback( $subSemanticDataMatch )
 	);
@@ -29,8 +29,8 @@ to iteratively resolve a single group and its members during a recursive process
 		$recursiveGroupMemberIterator
 	);
 
-	// Create a "real" User object on request only
-	$callbackIterator = $iteratorFactory->newCallbackIterator( $recursiveIteratorIterator, function( $recipient ) {
+	// Create a "real" User object only during a request
+	$mappingIterator = $iteratorFactory->newMappingIterator( $recursiveIteratorIterator, function( $recipient ) {
 		return User::newFromName( $recipient, false );
 	} );
 ```
