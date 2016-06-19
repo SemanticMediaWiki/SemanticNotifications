@@ -2,11 +2,13 @@
 
 namespace SMW\Notifications\Tests;
 
+use RecursiveIterator;
 use SMW\Notifications\IteratorFactory;
 use SMW\Notifications\Iterator\CallbackIterator;
 use SMW\Notifications\Iterator\RecursiveGroupMembersIterator;
 use SMW\Notifications\Iterator\ChildlessRecursiveIterator;
 use RecursiveIteratorIterator;
+use SMW\Store;
 
 /**
  * @covers \SMW\Notifications\IteratorFactory
@@ -19,27 +21,19 @@ use RecursiveIteratorIterator;
  */
 class IteratorFactoryTest extends \PHPUnit_Framework_TestCase {
 
-	public function testCanConstruct() {
-
-		$this->assertInstanceOf(
-			IteratorFactory::class,
-			new IteratorFactory()
-		);
-	}
-
 	public function testCanConstructCallbackIterator() {
 
 		$instance = new IteratorFactory();
 
 		$this->assertInstanceOf(
 			CallbackIterator::class,
-			$instance->newCallbackIterator( array(), function(){} )
+			$instance->newCallbackIterator( [], function() {} )
 		);
 	}
 
 	public function testCanConstructRecursiveGroupMembersIterator() {
 
-		$store = $this->getMockBuilder( '\SMW\Store' )
+		$store = $this->getMockBuilder( Store::class )
 			->disableOriginalConstructor()
 			->getMockForAbstractClass();
 
@@ -47,13 +41,13 @@ class IteratorFactoryTest extends \PHPUnit_Framework_TestCase {
 
 		$this->assertInstanceOf(
 			RecursiveGroupMembersIterator::class,
-			$instance->newRecursiveGroupMembersIterator( array(), $store )
+			$instance->newRecursiveGroupMembersIterator( [], $store )
 		);
 	}
 
 	public function testCanConstructRecursiveIteratorIterator() {
 
-		$recursiveIterator = $this->getMockBuilder( '\RecursiveIterator' )
+		$recursiveIterator = $this->getMockBuilder( RecursiveIterator::class )
 			->disableOriginalConstructor()
 			->getMock();
 
@@ -71,7 +65,7 @@ class IteratorFactoryTest extends \PHPUnit_Framework_TestCase {
 
 		$this->assertInstanceOf(
 			ChildlessRecursiveIterator::class,
-			$instance->newChildlessRecursiveIterator( array() )
+			$instance->newChildlessRecursiveIterator( [] )
 		);
 	}
 

@@ -2,7 +2,13 @@
 
 namespace SMW\Notifications\Tests;
 
+use SMW\DataTypeRegistry;
+use SMW\DIWikiPage;
 use SMW\Notifications\HookRegistry;
+use SMW\PropertyRegistry;
+use SMW\SemanticData;
+use SMW\SQLStore\CompositePropertyTableDiffIterator;
+use SMWSQLStore3;
 
 /**
  * @covers \SMW\Notifications\HookRegistry
@@ -14,14 +20,6 @@ use SMW\Notifications\HookRegistry;
  * @author mwjames
  */
 class HookRegistryTest extends \PHPUnit_Framework_TestCase {
-
-	public function testCanConstruct() {
-
-		$this->assertInstanceOf(
-			HookRegistry::class,
-			new HookRegistry()
-		);
-	}
 
 	public function testRegister() {
 
@@ -41,7 +39,7 @@ class HookRegistryTest extends \PHPUnit_Framework_TestCase {
 
 		$handler = 'SMW::Property::initProperties';
 
-		$propertyRegistry = $this->getMockBuilder( '\SMW\PropertyRegistry' )
+		$propertyRegistry = $this->getMockBuilder( PropertyRegistry::class )
 			->disableOriginalConstructor()
 			->getMock();
 
@@ -59,7 +57,7 @@ class HookRegistryTest extends \PHPUnit_Framework_TestCase {
 
 		$handler = 'SMW::DataType::initTypes';
 
-		$dataTypeRegistry = $this->getMockBuilder( '\SMW\DataTypeRegistry' )
+		$dataTypeRegistry = $this->getMockBuilder( DataTypeRegistry::class )
 			->disableOriginalConstructor()
 			->getMock();
 
@@ -131,7 +129,7 @@ class HookRegistryTest extends \PHPUnit_Framework_TestCase {
 			$instance->isRegistered( $handler )
 		);
 
-		$echoEvent = $this->getMockBuilder( '\EchoEvent' )
+		$echoEvent = $this->getMockBuilder( \EchoEvent::class )
 			->disableOriginalConstructor()
 			->getMock();
 
@@ -151,7 +149,7 @@ class HookRegistryTest extends \PHPUnit_Framework_TestCase {
 			$instance->isRegistered( $handler )
 		);
 
-		$echoEvent = $this->getMockBuilder( '\EchoEvent' )
+		$echoEvent = $this->getMockBuilder( \EchoEvent::class )
 			->disableOriginalConstructor()
 			->getMock();
 
@@ -171,15 +169,15 @@ class HookRegistryTest extends \PHPUnit_Framework_TestCase {
 			$instance->isRegistered( $handler )
 		);
 
-		$subject = $this->getMockBuilder( '\SMW\DIWikiPage' )
+		$subject = $this->getMockBuilder( DIWikiPage::class )
 			->disableOriginalConstructor()
 			->getMock();
 
-		$store = $this->getMockBuilder( '\SMW\SQLStore\SQLStore' )
+		$store = $this->getMockBuilder( SMWSQLStore3::class )
 			->disableOriginalConstructor()
 			->getMock();
 
-		$semanticData = $this->getMockBuilder( '\SMW\SemanticData' )
+		$semanticData = $this->getMockBuilder( SemanticData::class )
 			->disableOriginalConstructor()
 			->getMock();
 
@@ -187,7 +185,7 @@ class HookRegistryTest extends \PHPUnit_Framework_TestCase {
 			->method( 'getSubject' )
 			->will( $this->returnValue( $subject ) );
 
-		$compositePropertyTableDiffIterator = $this->getMockBuilder( '\SMW\SQLStore\CompositePropertyTableDiffIterator' )
+		$compositePropertyTableDiffIterator = $this->getMockBuilder( CompositePropertyTableDiffIterator::class )
 			->disableOriginalConstructor()
 			->getMock();
 
