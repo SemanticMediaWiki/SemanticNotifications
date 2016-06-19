@@ -4,7 +4,6 @@ namespace SMW\Notifications\Iterator;
 
 use IteratorIterator;
 use Iterator;
-use Closure;
 use ArrayIterator;
 use RuntimeException;
 
@@ -16,18 +15,15 @@ use RuntimeException;
  */
 class CallbackIterator extends IteratorIterator {
 
-	/**
-	 * @var Closure
-	 */
-	protected $callback;
+	private $callback;
 
 	/**
 	 * @since 1.0
 	 *
 	 * @param Iterator $iterator
-	 * @param Closure  $callback
+	 * @param callable  $callback
 	 */
-	public function __construct( $iterator, Closure $callback ) {
+	public function __construct( $iterator, callable $callback ) {
 
 		if ( is_array( $iterator ) ) {
 			$iterator = new ArrayIterator( $iterator );
