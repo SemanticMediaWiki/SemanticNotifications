@@ -24,7 +24,7 @@ class UserLocator {
 	 *
 	 * @param EchoEvent $event
 	 *
-	 * @return User[]|Iterator
+	 * @return User[]|\Iterator
 	 */
 	public static function doLocateEventSubscribers( EchoEvent $event ) {
 
