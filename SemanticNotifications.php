@@ -20,8 +20,6 @@ if ( defined( 'SMW_NOTIFICATIONS_VERSION' ) ) {
 	return 1;
 }
 
-define( 'SMW_NOTIFICATIONS_VERSION', '1.0.0-alpha' );
-
 SemanticNotifications::initExtension();
 
 $GLOBALS['wgExtensionFunctions'][] = function() {
@@ -37,6 +35,8 @@ class SemanticNotifications {
 	 * @since 1.0
 	 */
 	public static function initExtension() {
+
+		define( 'SMW_NOTIFICATIONS_VERSION', '1.0.0-alpha' );
 
 		// Register extension info
 		$GLOBALS['wgExtensionCredits']['semantic'][] = array(
