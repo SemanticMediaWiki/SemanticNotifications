@@ -57,7 +57,7 @@ class EchoNotificationsManagerTest extends \PHPUnit_Framework_TestCase {
 		);
 
 		$this->assertArrayHasKey(
-			ChangeNotifications::SPECIFICATION_CHANGE. '-property',
+			ChangeNotifications::SPECIFICATION_CHANGE . '-property',
 			$icons
 		);
 

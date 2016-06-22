@@ -134,7 +134,10 @@ class ChangeNotifications {
 			PropertyRegistry::NOTIFICATIONS_ON
 		);
 
-		if ( $this->subject->getNamespace() === SMW_NS_PROPERTY || $this->subject->getNamespace() === NS_CATEGORY ) {
+		if (
+			$this->subject->getNamespace() === SMW_NS_PROPERTY ||
+			$this->subject->getNamespace() === NS_CATEGORY ||
+			$this->subject->getNamespace() === SMW_NS_CONCEPT ) {
 			$this->type = self::SPECIFICATION_CHANGE;
 		}
 
@@ -185,7 +188,7 @@ class ChangeNotifications {
 				$fieldChangeOp->get( 'p_id' )
 			);
 
-			if ( $dataItem === null ) {
+			if ( $dataItem === null || $dataItem->getDBKey() === '' ) {
 				continue;
 			}
 

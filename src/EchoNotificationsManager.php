@@ -24,7 +24,6 @@ class EchoNotificationsManager {
 	 * @param array &$notifications
 	 * @param array &$notificationCategories
 	 * @param array &$icons
-	 *
 	 */
 	public function addNotificationsDefinitions( array &$notifications, array &$notificationCategories, array &$icons ) {
 
@@ -115,16 +114,16 @@ class EchoNotificationsManager {
 		);
 
 		$icons[$valueChangeNotificationType] = array(
-			'path' => "SemanticNotifications/res/smw-value-change.png"
+			'path' => "SemanticNotifications/res/smw-entity-change-yellow.png"
 		);
 
 		// Resolved in ChangeNotificationPresentationModel::getIconType
 		$icons[$specificationChangeNotificationType . '-property'] = array(
-			'path' => "SemanticNotifications/res/smw-property-change.png"
+			'path' => "SemanticNotifications/res/smw-entity-change-blue.png"
 		);
 
 		$icons[$specificationChangeNotificationType . '-category'] = array(
-			'path' => "SemanticNotifications/res/smw-category-change.png"
+			'path' => "SemanticNotifications/res/smw-entity-change-green.png"
 		);
 	}
 
@@ -148,13 +147,14 @@ class EchoNotificationsManager {
 	 *
 	 * @param EchoEvent $event
 	 * @param string &$bundleString
-	 *
 	 */
 	public function getNotificationsBundle( EchoEvent $event, &$bundleString ) {
 
 		$extra = $event->getExtra();
 
-		if ( $event->getType() === ChangeNotifications::VALUE_CHANGE ) {
+		if (
+			$event->getType() === ChangeNotifications::VALUE_CHANGE ||
+			$event->getType() === ChangeNotifications::SPECIFICATION_CHANGE ) {
 			$bundleString = $extra['subject']->getHash() . $extra['revid'];
 		}
 	}
@@ -162,7 +162,9 @@ class EchoNotificationsManager {
 	/**
 	 * @since 1.0
 	 *
-	 * @param array &$event
+	 * @param array $event
+	 *
+	 * @return EchoEvent
 	 */
 	public function createEvent( array $event ) {
 

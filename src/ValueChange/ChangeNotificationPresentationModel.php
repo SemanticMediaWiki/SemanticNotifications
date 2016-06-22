@@ -24,8 +24,10 @@ class ChangeNotificationPresentationModel extends EchoEventPresentationModel {
 			return $this->event->getType();
 		}
 
+		$namespace = $this->event->getTitle()->getNamespace();
+
 		// @see EchoNotificationsManager::addNotificationsDefinitions for the icons
-		if ( $this->event->getTitle()->getNamespace() === NS_CATEGORY ) {
+		if ( $namespace === NS_CATEGORY || $namespace === SMW_NS_CONCEPT ) {
 			return $this->event->getType() . '-category';
 		}
 
@@ -103,6 +105,10 @@ class ChangeNotificationPresentationModel extends EchoEventPresentationModel {
 		foreach ( $extra['properties'] as $dataItem ) {
 
 			$prefix = '';
+
+			if ( $dataItem->getDBKey() === '' ) {
+				continue;
+			}
 
 			if ( $dataItem->getNamespace() === NS_CATEGORY ) {
 				$prefix = $this->language->getNsText( NS_CATEGORY ) . ':';

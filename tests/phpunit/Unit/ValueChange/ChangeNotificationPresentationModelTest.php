@@ -216,9 +216,9 @@ class ChangeNotificationPresentationModelTest extends \PHPUnit_Framework_TestCas
 	}
 
 	/**
-	 * @dataProvider typeProvider
+	 * @dataProvider propertiesProvider
 	 */
-	public function testGetBodyMessageOnAvailableProperties( $type, $subject ) {
+	public function testGetBodyMessageOnAvailableProperties( $type, $properties ) {
 
 		$echoEvent = $this->getMockBuilder( '\EchoEvent' )
 			->disableOriginalConstructor()
@@ -226,7 +226,7 @@ class ChangeNotificationPresentationModelTest extends \PHPUnit_Framework_TestCas
 
 		$echoEvent->expects( $this->any() )
 			->method( 'getExtra' )
-			->will( $this->returnValue( array( 'properties' => array( $subject ) ) ) );
+			->will( $this->returnValue( array( 'properties' => $properties ) ) );
 
 		$echoEvent->expects( $this->any() )
 			->method( 'getType' )
@@ -333,6 +333,12 @@ class ChangeNotificationPresentationModelTest extends \PHPUnit_Framework_TestCas
 			'smw-specification-change-category'
 		);
 
+		$provider['specification-conc'] = array(
+			ChangeNotifications::SPECIFICATION_CHANGE,
+			DIWikiPage::newFromText( 'Foo', SMW_NS_CONCEPT ),
+			'smw-specification-change-category'
+		);
+
 		$provider['value'] = array(
 			ChangeNotifications::VALUE_CHANGE,
 			DIWikiPage::newFromText( 'Foo' ),
@@ -357,6 +363,26 @@ class ChangeNotificationPresentationModelTest extends \PHPUnit_Framework_TestCas
 		$provider['value'] = array(
 			ChangeNotifications::VALUE_CHANGE,
 			DIWikiPage::newFromText( 'Foo' )
+		);
+
+		return $provider;
+	}
+
+	public function propertiesProvider() {
+
+		$provider['value'] = array(
+			ChangeNotifications::VALUE_CHANGE,
+			array(
+				DIWikiPage::newFromText( 'Foo', SMW_NS_PROPERTY )
+			)
+		);
+
+		$provider['value-empty-prop'] = array(
+			ChangeNotifications::VALUE_CHANGE,
+			array(
+				DIWikiPage::newFromText( 'Foo', SMW_NS_PROPERTY ),
+				DIWikiPage::newFromText( '', SMW_NS_PROPERTY )
+			)
 		);
 
 		return $provider;
