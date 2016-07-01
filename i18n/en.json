@@ -39,5 +39,10 @@
 	"smw-pa-property-predefined__notifications_to": "",
 
 	"smw-notifications-datavalue-restricted-to-user": "Value assignments to the [[Property:Notifications group member of|Notifications group member of]] property is restricted to the User namespace.",
-	"smw-notifications-datavalue-invalid-group": "The \"$1\" group has not been registered (i.e. is not matchable to any [[Property:Notifications to group|Notifications to group]])."
+	"smw-notifications-datavalue-invalid-group": "The \"$1\" group has not been registered (i.e. is not matchable to any [[Property:Notifications to group|Notifications to group]]).",
+
+	"smw-notifications-property-alias-notifications-to" :"Notifications to",
+	"smw-notifications-property-alias-notifications-group-member-of" :"Notifications group member of",
+	"smw-notifications-property-alias-notifications-to-group" :"Notifications to group",
+	"smw-notifications-property-alias-notifications-on" :"Notifications on"
 }

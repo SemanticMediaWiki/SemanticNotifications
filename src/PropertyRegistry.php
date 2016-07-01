@@ -51,8 +51,8 @@ class PropertyRegistry {
 			self::NOTIFICATIONS_ON => array(
 				'label' => SMW_NOTIFICATIONS_ON,
 				'type'  => '_txt',
-				'alias' => array( wfMessage( 'smw-notifications-alias-notifications-on' )->text() ),
-				'msgkey' => 'smw-notifications-alias-notifications-on',
+				'alias' => array( wfMessage( 'smw-notifications-property-alias-notifications-on' )->text() ),
+				'msgkey' => 'smw-notifications-property-alias-notifications-on',
 				'visibility' => true,
 				'annotableByUser'  => true
 			),
@@ -60,8 +60,8 @@ class PropertyRegistry {
 			self::NOTIFICATIONS_TO_GROUP => array(
 				'label' => SMW_NOTIFICATIONS_TO_GROUP,
 				'type'  => '_txt',
-				'alias' => array( wfMessage( 'smw-notifications-alias-notifications-to-group' )->text() ),
-				'msgkey' => 'smw-notifications-alias-notifications-to-group',
+				'alias' => array( wfMessage( 'smw-notifications-property-alias-notifications-to-group' )->text() ),
+				'msgkey' => 'smw-notifications-property-alias-notifications-to-group',
 				'visibility' => true,
 				'annotableByUser'  => true
 			),
@@ -69,8 +69,8 @@ class PropertyRegistry {
 			self::NOTIFICATIONS_GROUP_MEMBER_OF => array(
 				'label' => SMW_NOTIFICATIONS_GROUP_MEMBER_OF,
 				'type'  => '_notification_group',
-				'alias' => array( wfMessage( 'smw-notifications-alias-notifications-group-member-of' )->text() ),
-				'msgkey' => 'smw-notifications-alias-notifications-group',
+				'alias' => array( wfMessage( 'smw-notifications-property-alias-notifications-group-member-of' )->text() ),
+				'msgkey' => 'smw-notifications-property-alias-notifications-group',
 				'visibility' => true,
 				'annotableByUser'  => true
 			),
@@ -78,8 +78,8 @@ class PropertyRegistry {
 			self::NOTIFICATIONS_TO => array(
 				'label' => SMW_NOTIFICATIONS_TO,
 				'type'  => '_txt',
-				'alias' => array( wfMessage( 'smw-notifications-alias-notifications-to' )->text() ),
-				'msgkey' => 'smw-notifications-alias-notifications-to',
+				'alias' => array( wfMessage( 'smw-notifications-property-alias-notifications-to' )->text() ),
+				'msgkey' => 'smw-notifications-property-alias-notifications-to',
 				'visibility' => true,
 				'annotableByUser'  => true
 			)
