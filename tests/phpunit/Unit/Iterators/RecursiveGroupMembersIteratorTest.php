@@ -1,8 +1,8 @@
 <?php
 
-namespace SMW\Notifications\Iterator\Tests;
+namespace SMW\Notifications\Iterators\Tests;
 
-use SMW\Notifications\Iterator\RecursiveGroupMembersIterator;
+use SMW\Notifications\Iterators\RecursiveGroupMembersIterator;
 use SMW\Tests\TestEnvironment;
 use RecursiveIteratorIterator;
 use SMW\Notifications\PropertyRegistry;
@@ -12,7 +12,7 @@ use SMWDIBlob as DIBlob;
 use ArrayIterator;
 
 /**
- * @covers \SMW\Notifications\Iterator\RecursiveGroupMembersIterator
+ * @covers \SMW\Notifications\Iterators\RecursiveGroupMembersIterator
  * @group semantic-notifications
  *
  * @license GNU GPL v2+

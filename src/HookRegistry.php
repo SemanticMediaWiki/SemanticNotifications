@@ -4,7 +4,7 @@ namespace SMW\Notifications;
 
 use SMW\Notifications\EchoPresentationModel;
 use SMW\Notifications\EchoFormatter;
-use SMW\Notifications\ValueChange\ChangeNotifications;
+use SMW\Notifications\ChangeNotification\ChangeNotificationFilter;
 use SMWDataItem as DataItem;
 use Hooks;
 use EchoEvent;
@@ -147,21 +147,21 @@ class HookRegistry {
 
 		$this->handlers['SMW::SQLStore::AfterDataUpdateComplete'] = function ( $store, $semanticData, $compositePropertyTableDiffIterator ) use ( $echoNotificationsManager ) {
 
-			$changeNotifications = new ChangeNotifications(
+			$changeNotificationFilter = new ChangeNotificationFilter(
 				$semanticData->getSubject(),
 				$store
 			);
 
-			$changeNotifications->setAgent(
+			$changeNotificationFilter->setAgent(
 				$GLOBALS['wgUser']
 			);
 
-			$hasChangeToNotifAbout = $changeNotifications->hasChangeToNotifAbout(
+			$hasChangeToNotifAbout = $changeNotificationFilter->hasChangeToNotifAbout(
 				$compositePropertyTableDiffIterator
 			);
 
 			$echoNotificationsManager->createEvent(
-				$changeNotifications->getEventRecord( $hasChangeToNotifAbout )
+				$changeNotificationFilter->getEventRecord( $hasChangeToNotifAbout )
 			);
 
 			return true;

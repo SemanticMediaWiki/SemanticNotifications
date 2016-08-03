@@ -1,6 +1,6 @@
 <?php
 
-namespace SMW\Notifications\ValueChange;
+namespace SMW\Notifications\ChangeNotification;
 
 use SMW\Store;
 use SMW\ApplicationFactory;
@@ -18,7 +18,7 @@ use Hooks;
  *
  * @author mwjames
  */
-class ChangeNotifications {
+class ChangeNotificationFilter {
 
 	const VALUE_CHANGE = 'smw-value-change';
 	const SPECIFICATION_CHANGE = 'smw-specification-change';

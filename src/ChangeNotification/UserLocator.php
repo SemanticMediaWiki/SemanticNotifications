@@ -1,6 +1,6 @@
 <?php
 
-namespace SMW\Notifications\ValueChange;
+namespace SMW\Notifications\ChangeNotification;
 
 use SMW\ApplicationFactory;
 use SMW\Notifications\IteratorFactory;
@@ -45,7 +45,7 @@ class UserLocator {
 		$subSemanticDataMatch = isset( $extra['subSemanticDataMatch'] ) ? $extra['subSemanticDataMatch'] : array();
 		$type = $event->getType();
 
-		if ( $type === ChangeNotifications::SPECIFICATION_CHANGE ) {
+		if ( $type === ChangeNotificationFilter::SPECIFICATION_CHANGE ) {
 			$groups = $notificationGroupsLocator->getSpecialGroupOnSpecificationChange();
 		} else {
 			// Find groups assigned to properties on a "lazy" request during the

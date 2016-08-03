@@ -4,9 +4,9 @@ namespace SMW\Notifications;
 
 use EchoEvent;
 use EchoAttributeManager;
-use SMW\Notifications\ValueChange\ChangeNotifications;
-use SMW\Notifications\ValueChange\ChangeNotificationFormatter;
-use SMW\Notifications\ValueChange\ChangeNotificationPresentationModel;
+use SMW\Notifications\ChangeNotification\ChangeNotificationFilter;
+use SMW\Notifications\ChangeNotification\ChangeNotificationFormatter;
+use SMW\Notifications\ChangeNotification\ChangeNotificationPresentationModel;
 
 /**
  * @license GNU GPL v2+
@@ -27,8 +27,8 @@ class EchoNotificationsManager {
 	 */
 	public function addNotificationsDefinitions( array &$notifications, array &$notificationCategories, array &$icons ) {
 
-		$valueChangeNotificationType = ChangeNotifications::VALUE_CHANGE;
-		$specificationChangeNotificationType = ChangeNotifications::SPECIFICATION_CHANGE;
+		$valueChangeNotificationType = ChangeNotificationFilter::VALUE_CHANGE;
+		$specificationChangeNotificationType = ChangeNotificationFilter::SPECIFICATION_CHANGE;
 
 		$notificationCategories[$valueChangeNotificationType] = array(
 			'priority' => 5,
@@ -42,7 +42,7 @@ class EchoNotificationsManager {
 
 		$notifications[$valueChangeNotificationType] = array(
 			EchoAttributeManager::ATTR_LOCATORS => [
-				'\SMW\Notifications\ValueChange\UserLocator::doLocateEventSubscribers'
+				'\SMW\Notifications\ChangeNotification\UserLocator::doLocateEventSubscribers'
 			],
 			'category' => 'smw-value-change',
 			'group' => 'neutral',
@@ -79,7 +79,7 @@ class EchoNotificationsManager {
 
 		$notifications[$specificationChangeNotificationType] = array(
 			EchoAttributeManager::ATTR_LOCATORS => [
-				'\SMW\Notifications\ValueChange\UserLocator::doLocateEventSubscribers'
+				'\SMW\Notifications\ChangeNotification\UserLocator::doLocateEventSubscribers'
 			],
 			'category' => 'smw-specification-change',
 			'group' => 'neutral',
@@ -136,7 +136,7 @@ class EchoNotificationsManager {
 	 *
 	 */
 	public function addDefaultOptions( array &$defaultOptions ) {
-		$defaultOptions['echo-subscriptions-web-' . ChangeNotifications::VALUE_CHANGE] = true;
+		$defaultOptions['echo-subscriptions-web-' . ChangeNotificationFilter::VALUE_CHANGE] = true;
 		return true;
 	}
 
@@ -153,8 +153,8 @@ class EchoNotificationsManager {
 		$extra = $event->getExtra();
 
 		if (
-			$event->getType() === ChangeNotifications::VALUE_CHANGE ||
-			$event->getType() === ChangeNotifications::SPECIFICATION_CHANGE ) {
+			$event->getType() === ChangeNotificationFilter::VALUE_CHANGE ||
+			$event->getType() === ChangeNotificationFilter::SPECIFICATION_CHANGE ) {
 			$bundleString = $extra['subject']->getHash() . $extra['revid'];
 		}
 	}
@@ -189,7 +189,7 @@ class EchoNotificationsManager {
 
 		$extra = $event->getExtra();
 
-		if ( $event->getType() === ChangeNotifications::VALUE_CHANGE ) {
+		if ( $event->getType() === ChangeNotificationFilter::VALUE_CHANGE ) {
 			if ( isset( $extra['recipients'] ) ) {
 				foreach ( $extra['recipients'] as $key => $recipient ) {
 					$users[] = \User::newFromName( $recipient, false );

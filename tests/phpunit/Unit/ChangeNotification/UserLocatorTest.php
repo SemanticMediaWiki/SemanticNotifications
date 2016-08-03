@@ -1,14 +1,14 @@
 <?php
 
-namespace SMW\Notifications\Tests;
+namespace SMW\Notifications\Tests\ChangeNotification;
 
-use SMW\Notifications\ValueChange\UserLocator;
-use SMW\Notifications\ValueChange\ChangeNotifications;
+use SMW\Notifications\ChangeNotification\UserLocator;
+use SMW\Notifications\ChangeNotification\ChangeNotificationFilter;
 use SMW\DIWikiPage;
 use SMW\Tests\TestEnvironment;
 
 /**
- * @covers \SMW\Notifications\ValueChange\UserLocator
+ * @covers \SMW\Notifications\ChangeNotification\UserLocator
  * @group semantic-notifications
  *
  * @license GNU GPL v2+
@@ -121,7 +121,7 @@ class UserLocatorTest extends \PHPUnit_Framework_TestCase {
 
 		$echoEvent->expects( $this->once() )
 			->method( 'getType' )
-			->will( $this->returnValue( ChangeNotifications::SPECIFICATION_CHANGE ) );
+			->will( $this->returnValue( ChangeNotificationFilter::SPECIFICATION_CHANGE ) );
 
 		$it = UserLocator::doLocateEventSubscribers( $echoEvent );
 
@@ -135,12 +135,12 @@ class UserLocatorTest extends \PHPUnit_Framework_TestCase {
 
 	public function changeTypeProvider() {
 
-		$provider[ChangeNotifications::SPECIFICATION_CHANGE] = array(
-			ChangeNotifications::SPECIFICATION_CHANGE
+		$provider[ChangeNotificationFilter::SPECIFICATION_CHANGE] = array(
+			ChangeNotificationFilter::SPECIFICATION_CHANGE
 		);
 
-		$provider[ChangeNotifications::VALUE_CHANGE] = array(
-			ChangeNotifications::VALUE_CHANGE
+		$provider[ChangeNotificationFilter::VALUE_CHANGE] = array(
+			ChangeNotificationFilter::VALUE_CHANGE
 		);
 
 		return $provider;

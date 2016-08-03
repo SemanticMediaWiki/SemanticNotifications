@@ -1,14 +1,14 @@
 <?php
 
-namespace SMW\Notifications\Tests;
+namespace SMW\Notifications\Tests\ChangeNotification;
 
-use SMW\Notifications\ValueChange\ChangeNotificationFormatter;
-use SMW\Notifications\ValueChange\ChangeNotifications;
+use SMW\Notifications\ChangeNotification\ChangeNotificationFormatter;
+use SMW\Notifications\ChangeNotification\ChangeNotificationFilter;
 use SMW\DIWikiPage;
 use SMW\Tests\TestEnvironment;
 
 /**
- * @covers \SMW\Notifications\ValueChange\ChangeNotificationFormatter
+ * @covers \SMW\Notifications\ChangeNotification\ChangeNotificationFormatter
  * @group semantic-notifications
  *
  * @license GNU GPL v2+
@@ -99,17 +99,17 @@ class ChangeNotificationFormatterTest extends \PHPUnit_Framework_TestCase {
 	public function typeProvider() {
 
 		$provider['specification-prop'] = array(
-			ChangeNotifications::SPECIFICATION_CHANGE,
+			ChangeNotificationFilter::SPECIFICATION_CHANGE,
 			DIWikiPage::newFromText( 'Foo', SMW_NS_PROPERTY )
 		);
 
 		$provider['specification-cat'] = array(
-			ChangeNotifications::SPECIFICATION_CHANGE,
+			ChangeNotificationFilter::SPECIFICATION_CHANGE,
 			DIWikiPage::newFromText( 'Foo', NS_CATEGORY )
 		);
 
 		$provider['value'] = array(
-			ChangeNotifications::VALUE_CHANGE,
+			ChangeNotificationFilter::VALUE_CHANGE,
 			DIWikiPage::newFromText( 'Foo' )
 		);
 

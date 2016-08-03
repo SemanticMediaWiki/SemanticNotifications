@@ -1,6 +1,6 @@
 <?php
 
-namespace SMW\Notifications\ValueChange;
+namespace SMW\Notifications\ChangeNotification;
 
 use SMW\Notifications\PropertyRegistry;
 use SMW\ApplicationFactory;

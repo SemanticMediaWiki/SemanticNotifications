@@ -2,7 +2,7 @@
 
 namespace SMW\Notifications;
 
-use SMW\PropertyRegistry as CorePropertyRegistry;
+use SMW\PropertyRegistry as SemanticMediaWikiPropertyRegistry;
 
 define( 'SMW_NOTIFICATIONS_ON', 'Notifications on' );
 define( 'SMW_NOTIFICATIONS_TO_GROUP', 'Notifications to group' );
@@ -40,11 +40,11 @@ class PropertyRegistry {
 	/**
 	 * @since 1.0
 	 *
-	 * @param CorePropertyRegistry $propertyRegistry
+	 * @param SemanticMediaWikiPropertyRegistry $propertyRegistry
 	 *
 	 * @return boolean
 	 */
-	public function register( CorePropertyRegistry $propertyRegistry ) {
+	public function register( SemanticMediaWikiPropertyRegistry $propertyRegistry ) {
 
 		$propertyDefinitions = array(
 

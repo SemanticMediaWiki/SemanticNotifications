@@ -1,13 +1,13 @@
 <?php
 
-namespace SMW\Notifications\Tests;
+namespace SMW\Notifications\Tests\ChangeNotification;
 
-use SMW\Notifications\ValueChange\NotificationGroupsLocator;
+use SMW\Notifications\ChangeNotification\NotificationGroupsLocator;
 use SMW\Notifications\DataValues\NotificationGroupValue;
 use SMW\DIWikiPage;
 
 /**
- * @covers \SMW\Notifications\ValueChange\NotificationGroupsLocator
+ * @covers \SMW\Notifications\ChangeNotification\NotificationGroupsLocator
  * @group semantic-notifications
  *
  * @license GNU GPL v2+

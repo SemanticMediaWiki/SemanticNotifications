@@ -1,14 +1,14 @@
 <?php
 
-namespace SMW\Notifications\Tests;
+namespace SMW\Notifications\Tests\ChangeNotification;
 
-use SMW\Notifications\ValueChange\ChangeNotifications;
+use SMW\Notifications\ChangeNotification\ChangeNotificationFilter;
 use SMW\DIWikiPage;
 use SMWDIBlob as DIBlob;
 use SMW\Tests\TestEnvironment;
 
 /**
- * @covers \SMW\Notifications\ValueChange\ChangeNotifications
+ * @covers \SMW\Notifications\ChangeNotification\ChangeNotificationFilter
  * @group semantic-notifications
  *
  * @license GNU GPL v2+
@@ -16,7 +16,7 @@ use SMW\Tests\TestEnvironment;
  *
  * @author mwjames
  */
-class ChangeNotificationsTest extends \PHPUnit_Framework_TestCase {
+class ChangeNotificationFilterTest extends \PHPUnit_Framework_TestCase {
 
 	private $store;
 	private $cachedPropertyValuesPrefetcher;
@@ -45,14 +45,14 @@ class ChangeNotificationsTest extends \PHPUnit_Framework_TestCase {
 	public function testCanConstruct() {
 
 		$this->assertInstanceOf(
-			ChangeNotifications::class,
-			new ChangeNotifications( DIWikiPage::newFromText( __METHOD__ ), $this->store )
+			ChangeNotificationFilter::class,
+			new ChangeNotificationFilter( DIWikiPage::newFromText( __METHOD__ ), $this->store )
 		);
 	}
 
 	public function testTryToGetEventRecordOnNullType() {
 
-		$instance = new ChangeNotifications(
+		$instance = new ChangeNotificationFilter(
 			DIWikiPage::newFromText( __METHOD__ ),
 			$this->store
 		);
@@ -112,7 +112,7 @@ class ChangeNotificationsTest extends \PHPUnit_Framework_TestCase {
 			->method( 'getOrderedDiffByTable' )
 			->will( $this->returnValue( $orderedDiffByTable ) );
 
-		$instance = new ChangeNotifications(
+		$instance = new ChangeNotificationFilter(
 			$subject,
 			$this->store
 		);
@@ -168,7 +168,7 @@ class ChangeNotificationsTest extends \PHPUnit_Framework_TestCase {
 			->method( 'getOrderedDiffByTable' )
 			->will( $this->returnValue( $orderedDiffByTable ) );
 
-		$instance = new ChangeNotifications(
+		$instance = new ChangeNotificationFilter(
 			$subject,
 			$this->store
 		);
@@ -182,7 +182,7 @@ class ChangeNotificationsTest extends \PHPUnit_Framework_TestCase {
 		);
 	}
 
-	public function testhasChangeToNotifAbout_ValueChangeForAnyValue() {
+	public function testhasChangeToNotifAbout_ChangeNotificationForAnyValue() {
 
 		$subject = DIWikiPage::newFromText( __METHOD__ );
 
@@ -232,7 +232,7 @@ class ChangeNotificationsTest extends \PHPUnit_Framework_TestCase {
 			->disableOriginalConstructor()
 			->getMock();
 
-		$instance = new ChangeNotifications(
+		$instance = new ChangeNotificationFilter(
 			$subject,
 			$this->store
 		);
@@ -248,7 +248,7 @@ class ChangeNotificationsTest extends \PHPUnit_Framework_TestCase {
 		);
 	}
 
-	public function testhasChangeToNotifAbout_ValueChangeForDistinctValue() {
+	public function testhasChangeToNotifAbout_ChangeNotificationForDistinctValue() {
 
 		$subject = DIWikiPage::newFromText( __METHOD__ );
 
@@ -305,7 +305,7 @@ class ChangeNotificationsTest extends \PHPUnit_Framework_TestCase {
 			->disableOriginalConstructor()
 			->getMock();
 
-		$instance = new ChangeNotifications(
+		$instance = new ChangeNotificationFilter(
 			$subject,
 			$this->store
 		);
@@ -321,7 +321,7 @@ class ChangeNotificationsTest extends \PHPUnit_Framework_TestCase {
 		);
 	}
 
-	public function testhasChangeToNotifAbout_ValueChangeForPageValue() {
+	public function testhasChangeToNotifAbout_ChangeNotificationForPageValue() {
 
 		$subject = DIWikiPage::newFromText( __METHOD__ );
 
@@ -374,7 +374,7 @@ class ChangeNotificationsTest extends \PHPUnit_Framework_TestCase {
 			->disableOriginalConstructor()
 			->getMock();
 
-		$instance = new ChangeNotifications(
+		$instance = new ChangeNotificationFilter(
 			$subject,
 			$this->store
 		);
@@ -390,7 +390,7 @@ class ChangeNotificationsTest extends \PHPUnit_Framework_TestCase {
 		);
 	}
 
-	public function testhasChangeToNotifAbout_ValueChangeForSubobjectRelatedValue() {
+	public function testhasChangeToNotifAbout_ChangeNotificationForSubobjectRelatedValue() {
 
 		$subject = DIWikiPage::newFromText( __METHOD__ );
 		$dataItem = DIWikiPage::newFromText( 'BAR', SMW_NS_PROPERTY );
@@ -473,7 +473,7 @@ class ChangeNotificationsTest extends \PHPUnit_Framework_TestCase {
 			->disableOriginalConstructor()
 			->getMock();
 
-		$instance = new ChangeNotifications(
+		$instance = new ChangeNotificationFilter(
 			$subject,
 			$this->store
 		);

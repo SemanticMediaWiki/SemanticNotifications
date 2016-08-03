@@ -3,10 +3,9 @@
 namespace SMW\Notifications;
 
 use SMW\Store;
-use SMW\Notifications\Iterator\MappingIterator;
-use SMW\Notifications\Iterator\CallbackRecursiveIterator;
-use SMW\Notifications\Iterator\RecursiveGroupMembersIterator;
-use SMW\Notifications\Iterator\ChildlessRecursiveIterator;
+use SMW\Notifications\Iterators\MappingIterator;
+use SMW\Notifications\Iterators\RecursiveGroupMembersIterator;
+use SMW\Notifications\Iterators\ChildlessRecursiveIterator;
 use Iterator;
 use RecursiveIterator;
 use RecursiveIteratorIterator;

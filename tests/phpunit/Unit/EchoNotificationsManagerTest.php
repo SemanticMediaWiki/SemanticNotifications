@@ -3,7 +3,7 @@
 namespace SMW\Notifications\Tests;
 
 use SMW\Notifications\EchoNotificationsManager;
-use SMW\Notifications\ValueChange\ChangeNotifications;
+use SMW\Notifications\ChangeNotification\ChangeNotificationFilter;
 use SMW\DIWikiPage;
 
 /**
@@ -32,37 +32,37 @@ class EchoNotificationsManagerTest extends \PHPUnit_Framework_TestCase {
 		);
 
 		$this->assertArrayHasKey(
-			ChangeNotifications::VALUE_CHANGE,
+			ChangeNotificationFilter::VALUE_CHANGE,
 			$notifications
 		);
 
 		$this->assertArrayHasKey(
-			ChangeNotifications::SPECIFICATION_CHANGE,
+			ChangeNotificationFilter::SPECIFICATION_CHANGE,
 			$notifications
 		);
 
 		$this->assertArrayHasKey(
-			ChangeNotifications::VALUE_CHANGE,
+			ChangeNotificationFilter::VALUE_CHANGE,
 			$notificationCategories
 		);
 
 		$this->assertArrayHasKey(
-			ChangeNotifications::SPECIFICATION_CHANGE,
+			ChangeNotificationFilter::SPECIFICATION_CHANGE,
 			$notificationCategories
 		);
 
 		$this->assertArrayHasKey(
-			ChangeNotifications::VALUE_CHANGE,
+			ChangeNotificationFilter::VALUE_CHANGE,
 			$icons
 		);
 
 		$this->assertArrayHasKey(
-			ChangeNotifications::SPECIFICATION_CHANGE . '-property',
+			ChangeNotificationFilter::SPECIFICATION_CHANGE . '-property',
 			$icons
 		);
 
 		$this->assertArrayHasKey(
-			ChangeNotifications::SPECIFICATION_CHANGE . '-category',
+			ChangeNotificationFilter::SPECIFICATION_CHANGE . '-category',
 			$icons
 		);
 	}
@@ -78,7 +78,7 @@ class EchoNotificationsManagerTest extends \PHPUnit_Framework_TestCase {
 		);
 
 		$this->assertArrayHasKey(
-			'echo-subscriptions-web-' . ChangeNotifications::VALUE_CHANGE,
+			'echo-subscriptions-web-' . ChangeNotificationFilter::VALUE_CHANGE,
 			$defaultOptions
 		);
 	}
@@ -96,7 +96,7 @@ class EchoNotificationsManagerTest extends \PHPUnit_Framework_TestCase {
 
 		$echoEvent->expects( $this->once() )
 			->method( 'getType' )
-			->will( $this->returnValue( ChangeNotifications::VALUE_CHANGE ) );
+			->will( $this->returnValue( ChangeNotificationFilter::VALUE_CHANGE ) );
 
 		$echoEvent->expects( $this->once() )
 			->method( 'getExtra' )
@@ -130,7 +130,7 @@ class EchoNotificationsManagerTest extends \PHPUnit_Framework_TestCase {
 		$event = array(
 			'agent' => $agent,
 			'title' => $title,
-			'type'  => ChangeNotifications::VALUE_CHANGE
+			'type'  => ChangeNotificationFilter::VALUE_CHANGE
 		);
 
 		$instance = new EchoNotificationsManager();

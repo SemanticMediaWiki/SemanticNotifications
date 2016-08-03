@@ -1,14 +1,14 @@
 <?php
 
-namespace SMW\Notifications\Tests;
+namespace SMW\Notifications\Tests\ChangeNotification;
 
-use SMW\Notifications\ValueChange\ChangeNotificationPresentationModel;
-use SMW\Notifications\ValueChange\ChangeNotifications;
+use SMW\Notifications\ChangeNotification\ChangeNotificationPresentationModel;
+use SMW\Notifications\ChangeNotification\ChangeNotificationFilter;
 use SMW\DIWikiPage;
 use SMW\Tests\TestEnvironment;
 
 /**
- * @covers \SMW\Notifications\ValueChange\ChangeNotificationPresentationModel
+ * @covers \SMW\Notifications\ChangeNotification\ChangeNotificationPresentationModel
  * @group semantic-notifications
  *
  * @license GNU GPL v2+
@@ -101,7 +101,7 @@ class ChangeNotificationPresentationModelTest extends \PHPUnit_Framework_TestCas
 
 		$echoEvent->expects( $this->any() )
 			->method( 'getType' )
-			->will( $this->returnValue( ChangeNotifications::VALUE_CHANGE ) );
+			->will( $this->returnValue( ChangeNotificationFilter::VALUE_CHANGE ) );
 
 		$echoEvent->expects( $this->any() )
 			->method( 'getTitle' )
@@ -133,7 +133,7 @@ class ChangeNotificationPresentationModelTest extends \PHPUnit_Framework_TestCas
 
 		$echoEvent->expects( $this->any() )
 			->method( 'getType' )
-			->will( $this->returnValue( ChangeNotifications::VALUE_CHANGE ) );
+			->will( $this->returnValue( ChangeNotificationFilter::VALUE_CHANGE ) );
 
 		$echoEvent->expects( $this->any() )
 			->method( 'getTitle' )
@@ -165,7 +165,7 @@ class ChangeNotificationPresentationModelTest extends \PHPUnit_Framework_TestCas
 
 		$echoEvent->expects( $this->any() )
 			->method( 'getType' )
-			->will( $this->returnValue( ChangeNotifications::VALUE_CHANGE ) );
+			->will( $this->returnValue( ChangeNotificationFilter::VALUE_CHANGE ) );
 
 		$echoEvent->expects( $this->any() )
 			->method( 'getTitle' )
@@ -322,25 +322,25 @@ class ChangeNotificationPresentationModelTest extends \PHPUnit_Framework_TestCas
 	public function iconTypeProvider() {
 
 		$provider['specification-prop'] = array(
-			ChangeNotifications::SPECIFICATION_CHANGE,
+			ChangeNotificationFilter::SPECIFICATION_CHANGE,
 			DIWikiPage::newFromText( 'Foo', SMW_NS_PROPERTY ),
 			'smw-specification-change-property'
 		);
 
 		$provider['specification-cat'] = array(
-			ChangeNotifications::SPECIFICATION_CHANGE,
+			ChangeNotificationFilter::SPECIFICATION_CHANGE,
 			DIWikiPage::newFromText( 'Foo', NS_CATEGORY ),
 			'smw-specification-change-category'
 		);
 
 		$provider['specification-conc'] = array(
-			ChangeNotifications::SPECIFICATION_CHANGE,
+			ChangeNotificationFilter::SPECIFICATION_CHANGE,
 			DIWikiPage::newFromText( 'Foo', SMW_NS_CONCEPT ),
 			'smw-specification-change-category'
 		);
 
 		$provider['value'] = array(
-			ChangeNotifications::VALUE_CHANGE,
+			ChangeNotificationFilter::VALUE_CHANGE,
 			DIWikiPage::newFromText( 'Foo' ),
 			'smw-value-change'
 		);
@@ -351,17 +351,17 @@ class ChangeNotificationPresentationModelTest extends \PHPUnit_Framework_TestCas
 	public function typeProvider() {
 
 		$provider['specification-prop'] = array(
-			ChangeNotifications::SPECIFICATION_CHANGE,
+			ChangeNotificationFilter::SPECIFICATION_CHANGE,
 			DIWikiPage::newFromText( 'Foo', SMW_NS_PROPERTY )
 		);
 
 		$provider['specification-cat'] = array(
-			ChangeNotifications::SPECIFICATION_CHANGE,
+			ChangeNotificationFilter::SPECIFICATION_CHANGE,
 			DIWikiPage::newFromText( 'Foo', NS_CATEGORY )
 		);
 
 		$provider['value'] = array(
-			ChangeNotifications::VALUE_CHANGE,
+			ChangeNotificationFilter::VALUE_CHANGE,
 			DIWikiPage::newFromText( 'Foo' )
 		);
 
@@ -371,14 +371,14 @@ class ChangeNotificationPresentationModelTest extends \PHPUnit_Framework_TestCas
 	public function propertiesProvider() {
 
 		$provider['value'] = array(
-			ChangeNotifications::VALUE_CHANGE,
+			ChangeNotificationFilter::VALUE_CHANGE,
 			array(
 				DIWikiPage::newFromText( 'Foo', SMW_NS_PROPERTY )
 			)
 		);
 
 		$provider['value-empty-prop'] = array(
-			ChangeNotifications::VALUE_CHANGE,
+			ChangeNotificationFilter::VALUE_CHANGE,
 			array(
 				DIWikiPage::newFromText( 'Foo', SMW_NS_PROPERTY ),
 				DIWikiPage::newFromText( '', SMW_NS_PROPERTY )

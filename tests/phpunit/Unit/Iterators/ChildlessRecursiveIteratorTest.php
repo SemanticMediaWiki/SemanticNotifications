@@ -1,12 +1,12 @@
 <?php
 
-namespace SMW\Notifications\Iterator\Tests;
+namespace SMW\Notifications\Iterators\Tests;
 
-use SMW\Notifications\Iterator\ChildlessRecursiveIterator;
+use SMW\Notifications\Iterators\ChildlessRecursiveIterator;
 use RecursiveIteratorIterator;
 
 /**
- * @covers \SMW\Notifications\Iterator\ChildlessRecursiveIterator
+ * @covers \SMW\Notifications\Iterators\ChildlessRecursiveIterator
  * @group semantic-notifications
  *
  * @license GNU GPL v2+

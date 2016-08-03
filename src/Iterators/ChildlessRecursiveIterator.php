@@ -1,6 +1,6 @@
 <?php
 
-namespace SMW\Notifications\Iterator;
+namespace SMW\Notifications\Iterators;
 
 use Iterator;
 use ArrayIterator;

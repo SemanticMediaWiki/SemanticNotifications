@@ -4,9 +4,9 @@ namespace SMW\Notifications\Tests;
 
 use RecursiveIterator;
 use SMW\Notifications\IteratorFactory;
-use SMW\Notifications\Iterator\MappingIterator;
-use SMW\Notifications\Iterator\RecursiveGroupMembersIterator;
-use SMW\Notifications\Iterator\ChildlessRecursiveIterator;
+use SMW\Notifications\Iterators\MappingIterator;
+use SMW\Notifications\Iterators\RecursiveGroupMembersIterator;
+use SMW\Notifications\Iterators\ChildlessRecursiveIterator;
 use RecursiveIteratorIterator;
 use SMW\Store;
 

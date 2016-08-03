@@ -1,12 +1,12 @@
 <?php
 
-namespace SMW\Notifications\Iterator\Tests;
+namespace SMW\Notifications\Iterators\Tests;
 
-use SMW\Notifications\Iterator\MappingIterator;
+use SMW\Notifications\Iterators\MappingIterator;
 use ArrayIterator;
 
 /**
- * @covers \SMW\Notifications\Iterator\MappingIterator
+ * @covers \SMW\Notifications\Iterators\MappingIterator
  * @group semantic-notifications
  *
  * @license GNU GPL v2+

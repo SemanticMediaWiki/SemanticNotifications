@@ -1,6 +1,6 @@
 <?php
 
-namespace SMW\Notifications\ValueChange;
+namespace SMW\Notifications\ChangeNotification;
 
 use EchoEvent;
 use EchoEventPresentationModel;
@@ -20,7 +20,7 @@ class ChangeNotificationPresentationModel extends EchoEventPresentationModel {
 	 */
 	public function getIconType() {
 
-		if ( $this->event->getType() !== ChangeNotifications::SPECIFICATION_CHANGE ) {
+		if ( $this->event->getType() !== ChangeNotificationFilter::SPECIFICATION_CHANGE ) {
 			return $this->event->getType();
 		}
 

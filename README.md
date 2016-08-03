@@ -10,11 +10,11 @@
 Semantic Notifications (a.k.a. SNO) is a [Semantic Mediawiki][smw] extension that can inform registered users about
 changes to their structured data with help of the [Echo(Notifications)][echo] extension.
 
-Supported notification events that are produced by a `Notifications on` assignment for:
+Support for notifications on:
 
-- Changes that appear on selected properties and their values
-- Changes in connection with selected categories
-- Changes to the specification of a property or category
+- Changes for selected properties and specific values
+- Changes for selected categories
+- Changes to the specification and declaration of a property, category or concept
 
 ## Requirements
 
@@ -48,8 +48,8 @@ The recommended way to install Semantic Notifications is by using [Composer][com
 The [workflow document](docs/01-workflow.md) contains a detailed description about the required
 settings and decisions a user has to make in order for him or her to receive notifications.
 
-Extra scenarios and use cases can be found [here](docs/02-tips.md) while this
-[document](docs/03-technical notes.md) describes some technical details.
+Additional tips and use cases can be found [here](docs/02-tips.md) while [this document](docs/03-technical notes.md)
+describes some technical details.
 
 ## Contribution and support
 
