@@ -145,8 +145,8 @@ class ChangeNotificationFilter {
 
 			// Skip the Modification date
 			if (
-				( $tableChangeOp->getFixedPropertyValueFor( 'key' ) === '_MDAT' ) ||
-				( $tableChangeOp->getFixedPropertyValueFor( 'key' ) === '_REDI' ) ) {
+				( $tableChangeOp->getFixedPropertyValueBy( 'key' ) === '_MDAT' ) ||
+				( $tableChangeOp->getFixedPropertyValueBy( 'key' ) === '_REDI' ) ) {
 				continue;
 			}
 
@@ -175,16 +175,16 @@ class ChangeNotificationFilter {
 			// _INST is special since the p_id doesn't play a role
 			// in determining the category page involved
 			if ( $tableChangeOp->isFixedPropertyOp() ) {
-				if ( $tableChangeOp->getFixedPropertyValueFor( 'key' ) === '_INST' ) {
+				if ( $tableChangeOp->getFixedPropertyValueBy( 'key' ) === '_INST' ) {
 					$fieldChangeOp->set( 'p_id', $fieldChangeOp->get( 'o_id' ) );
 				} else {
-					$fieldChangeOp->set( 'p_id', $tableChangeOp->getFixedPropertyValueFor( 'p_id' ) );
+					$fieldChangeOp->set( 'p_id', $tableChangeOp->getFixedPropertyValueBy( 'p_id' ) );
 				}
 			}
 
 			// Get DI representation to build a DataValues that allows
 			// to match/compare values to its serialization form
-			$dataItem = $this->store->getObjectIds()->getDataItemForId(
+			$dataItem = $this->store->getObjectIds()->getDataItemById(
 				$fieldChangeOp->get( 'p_id' )
 			);
 
@@ -288,7 +288,7 @@ class ChangeNotificationFilter {
 		} elseif ( $fieldChangeOp->has( 'o_id' ) ) {
 
 			// Page object entities
-			$oDataItem = $this->store->getObjectIds()->getDataItemForId(
+			$oDataItem = $this->store->getObjectIds()->getDataItemById(
 				$fieldChangeOp->get( 'o_id' )
 			);
 /*

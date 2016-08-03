@@ -92,11 +92,11 @@ class ChangeNotificationFilterTest extends \PHPUnit_Framework_TestCase {
 
 		$idTable = $this->getMockBuilder( '\stdClass' )
 			->disableOriginalConstructor()
-			->setMethods( array( 'getDataItemForId' ) )
+			->setMethods( array( 'getDataItemById' ) )
 			->getMock();
 
 		$idTable->expects( $this->any() )
-			->method( 'getDataItemForId' )
+			->method( 'getDataItemById' )
 			->will( $this->returnValue( $dataItem ) );
 
 		$this->store->expects( $this->any() )
@@ -204,11 +204,11 @@ class ChangeNotificationFilterTest extends \PHPUnit_Framework_TestCase {
 
 		$idTable = $this->getMockBuilder( '\stdClass' )
 			->disableOriginalConstructor()
-			->setMethods( array( 'getDataItemForId' ) )
+			->setMethods( array( 'getDataItemById' ) )
 			->getMock();
 
 		$idTable->expects( $this->any() )
-			->method( 'getDataItemForId' )
+			->method( 'getDataItemById' )
 			->will( $this->returnValue( DIWikiPage::newFromText( 'FOO', SMW_NS_PROPERTY ) ) );
 
 		$this->store->expects( $this->any() )
@@ -277,11 +277,11 @@ class ChangeNotificationFilterTest extends \PHPUnit_Framework_TestCase {
 
 		$idTable = $this->getMockBuilder( '\stdClass' )
 			->disableOriginalConstructor()
-			->setMethods( array( 'getDataItemForId' ) )
+			->setMethods( array( 'getDataItemById' ) )
 			->getMock();
 
 		$idTable->expects( $this->any() )
-			->method( 'getDataItemForId' )
+			->method( 'getDataItemById' )
 			->will( $this->returnValue( DIWikiPage::newFromText( '_TEXT', SMW_NS_PROPERTY ) ) );
 
 		$this->store->expects( $this->any() )
@@ -346,11 +346,11 @@ class ChangeNotificationFilterTest extends \PHPUnit_Framework_TestCase {
 
 		$idTable = $this->getMockBuilder( '\stdClass' )
 			->disableOriginalConstructor()
-			->setMethods( array( 'getDataItemForId' ) )
+			->setMethods( array( 'getDataItemById' ) )
 			->getMock();
 
 		$idTable->expects( $this->any() )
-			->method( 'getDataItemForId' )
+			->method( 'getDataItemById' )
 			->will( $this->returnValue( DIWikiPage::newFromText( 'BAR', SMW_NS_PROPERTY ) ) );
 
 		$this->store->expects( $this->any() )
@@ -440,11 +440,11 @@ class ChangeNotificationFilterTest extends \PHPUnit_Framework_TestCase {
 
 		$idTable = $this->getMockBuilder( '\stdClass' )
 			->disableOriginalConstructor()
-			->setMethods( array( 'getDataItemForId' ) )
+			->setMethods( array( 'getDataItemById' ) )
 			->getMock();
 
 		$idTable->expects( $this->any() )
-			->method( 'getDataItemForId' )
+			->method( 'getDataItemById' )
 			->will( $this->returnValue( $dataItem ) );
 
 		$this->store->expects( $this->any() )
