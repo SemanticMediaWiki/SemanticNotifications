@@ -5,7 +5,7 @@
 		]
 	},
 	"smw-notifications-desc": "A Semantic MediaWiki extension that notifies about changes to structured data using the Echo(Notifications) extension.",
-	"smw-notifications-enity-specification-change-group": "entity specification change group",
+	"smw-notifications-entity-specification-change-group": "entity specification change group",
 
 	"echo-category-title-smw-value-change": "Entity value change (SMW)",
 	"echo-pref-tooltip-smw-value-change": "Notify me when a change to a selected entity (property, category) value in Semantic MediaWiki occurs.",

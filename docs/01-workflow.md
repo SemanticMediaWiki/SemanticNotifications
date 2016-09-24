@@ -4,14 +4,12 @@
 ![image](https://cloud.githubusercontent.com/assets/1245473/16138621/cd46a8ba-343f-11e6-870f-9ddb92f29d07.png)
 
 To receive notifications, a user has to enable the specific Semantic MediaWiki
-related notification [preferences][pref].
-
-An agent (the user that initiated a change) is generally excluded from receiving notifications
-about his own actions.
+related notification [preferences][pref] with an agent (the user that initiated a change) being
+generally excluded from receiving notifications about his own actions.
 
 ## Workflow
 
-![image](https://cloud.githubusercontent.com/assets/1245473/16158621/45c766c0-34be-11e6-97fc-e22d87df9441.png)
+![image](https://cloud.githubusercontent.com/assets/1245473/18805668/7cb694a0-8214-11e6-952d-e84e98fa6899.png)
 
 ### Monitor value changes
 

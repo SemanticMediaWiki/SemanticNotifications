@@ -22,7 +22,7 @@ use SpecialPage;
  */
 class NotificationGroupValue extends StringValue {
 
-	const SPECIAL_GROUP = 'smw-notifications-enity-specification-change-group';
+	const SPECIAL_GROUP = 'smw-notifications-entity-specification-change-group';
 
 	/**
 	 * Get name in a possible localized representation
@@ -50,7 +50,7 @@ class NotificationGroupValue extends StringValue {
 		}
 
 		if ( !$this->isKnownNotificationsGroup( $inputValue ) ) {
-			$this->addErrorMsg( array( 'smw-notifications-datavalue-invalid-group', $inputValue ) );
+			$this->addErrorMsg( array( 'smw-notifications-datavalue-invalid-group', $inputValue ), Message::PARSE );
 			$this->m_dataitem = new DIBlob( 'ERROR' );
 			return;
 		}
@@ -58,7 +58,7 @@ class NotificationGroupValue extends StringValue {
 		// If it has no contextPage it is most likely linked from a Special page
 		// such as Special:SearchByProperty or Special:Ask
 		if ( $this->getContextPage() !== null && !$this->hasUserContext() ) {
-			$this->addErrorMsg( array( 'smw-notifications-datavalue-restricted-to-user', $inputValue ) );
+			$this->addErrorMsg( array( 'smw-notifications-datavalue-restricted-to-user', $inputValue ), Message::PARSE );
 			$this->m_dataitem = new DIBlob( 'ERROR' );
 			return;
 		}
@@ -92,7 +92,7 @@ class NotificationGroupValue extends StringValue {
 		$text = SpecialPage::getTitleFor( 'SearchByProperty' )->getPrefixedText();
 
 		// This is a bit heavy handed ...
-		return '[[' . $text . '/' . SMW_NOTIFICATIONS_TO_GROUP . '/' . urlencode( $this->m_caption ) . '|' . $this->m_caption . ']]';
+		return '[[' . $text . '/' . SMW_NOTIFICATIONS_TO_GROUP . '/' . rawurlencode( $this->m_caption ) . '|' . $this->m_caption . ']]';
 	}
 
 	/**

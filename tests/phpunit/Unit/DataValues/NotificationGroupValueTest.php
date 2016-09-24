@@ -157,26 +157,26 @@ class NotificationGroupValueTest extends \PHPUnit_Framework_TestCase {
 			DIWikiPage::newFromText( __METHOD__, NS_USER )
 		);
 
-		$instance->setUserValue( 'Foo' );
+		$instance->setUserValue( 'Foo bar' );
 		$instance->setCaption( false );
 
 		$this->assertContains(
-			SMW_NOTIFICATIONS_TO_GROUP . '/' . 'Foo',
+			SMW_NOTIFICATIONS_TO_GROUP . '/' . 'Foo%20bar',
 			$instance->getShortWikiText( '' )
 		);
 
 		$this->assertContains(
-			SMW_NOTIFICATIONS_TO_GROUP . '/' . 'Foo',
+			SMW_NOTIFICATIONS_TO_GROUP . '/' . 'Foo%20bar',
 			$instance->getLongWikiText( '' )
 		);
 
 		$this->assertContains(
-			'value=Foo',
+			'value=Foo+bar',
 			$instance->getShortHTMLText( '' )
 		);
 
 		$this->assertContains(
-			'value=Foo',
+			'value=Foo+bar',
 			$instance->getLongHTMLText( '' )
 		);
 	}
