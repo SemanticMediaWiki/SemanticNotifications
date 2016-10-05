@@ -145,6 +145,9 @@ class HookRegistry {
 			return true;
 		};
 
+		/**
+		 * @see https://www.semantic-mediawiki.org/wiki/Hooks/SMW::SQLStore::AfterDataUpdateComplete
+		 */
 		$this->handlers['SMW::SQLStore::AfterDataUpdateComplete'] = function ( $store, $semanticData, $compositePropertyTableDiffIterator ) use ( $echoNotificationsManager ) {
 
 			$changeNotificationFilter = new ChangeNotificationFilter(
@@ -156,12 +159,12 @@ class HookRegistry {
 				$GLOBALS['wgUser']
 			);
 
-			$hasChangeToNotifAbout = $changeNotificationFilter->hasChangeToNotifAbout(
+			$hasChangeToNotifyAbout = $changeNotificationFilter->hasChangeToNotifyAbout(
 				$compositePropertyTableDiffIterator
 			);
 
 			$echoNotificationsManager->createEvent(
-				$changeNotificationFilter->getEventRecord( $hasChangeToNotifAbout )
+				$changeNotificationFilter->getEventRecord( $hasChangeToNotifyAbout )
 			);
 
 			return true;

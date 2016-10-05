@@ -13,7 +13,7 @@
 	"echo-category-title-smw-specification-change": "Entity specification change (SMW)",
 	"echo-pref-tooltip-smw-specification-change": "Notify me about changes to entity (property, category) specifications in Semantic MediaWiki.",
 
-	"notification-header-smw-value-change": "<strong>$3</strong> had {{PLURAL:$4|a value modification|some value modifications}}",
+	"notification-header-smw-value-change": "<strong>$3</strong> reported {{PLURAL:$4|a value modification|some value modifications}}",
 	"notification-bundle-header-smw-value-change": "<strong>$3</strong> and {{PLURAL:$4|one other page|$4 other pages|100=99+ other pages}} had {{PLURAL:$5|a modification|some modifications}}.",
 	"notification-body-smw-value-change": "\"$1\" {{PLURAL:$2|assignment was|assignments were}} altered.",
 

@@ -77,7 +77,7 @@ class PropertyRegistry {
 
 			self::NOTIFICATIONS_TO => array(
 				'label' => SMW_NOTIFICATIONS_TO,
-				'type'  => '_txt',
+				'type'  => '_wpg',
 				'alias' => array( wfMessage( 'smw-notifications-property-alias-notifications-to' )->text() ),
 				'msgkey' => 'smw-notifications-property-alias-notifications-to',
 				'visibility' => true,

@@ -12,15 +12,15 @@ use Iterator;
 use Hooks;
 
 /**
- * The purpose of this iterator is to lazy load subjects (== users) that are members
- * of a selected group.
+ * Lazy load members from a `Notifications group member of` or `Notifications to`
+ * assignment.
  *
  * @license GNU GPL v2+
  * @since 1.0
  *
  * @author mwjames
  */
-class RecursiveGroupMembersIterator implements RecursiveIterator {
+class RecursiveMembersIterator implements RecursiveIterator {
 
 	/**
 	 * @var Store
@@ -56,6 +56,11 @@ class RecursiveGroupMembersIterator implements RecursiveIterator {
 	 * @var DIWikiPage|null
 	 */
 	private $subject = null;
+
+	/**
+	 * @var false
+	 */
+	private $notificationsTo = false;
 
 	/**
 	 * @since 1.0
@@ -167,12 +172,14 @@ class RecursiveGroupMembersIterator implements RecursiveIterator {
 
 		$group = array_shift( $this->groups );
 
+		$recipients = $this->doFilterMembersByNotificationsToAssignment(
+			$this->subject
+		);
+
 		if ( $group === false || $group === array() || $group === null ) {
-			$this->current = array();
+			$this->current = $recipients === array() ? array() : array_values( $recipients );
 			return false;
 		}
-
-		$recipients = array();
 
 		foreach ( $group as $groupName ) {
 
@@ -183,14 +190,33 @@ class RecursiveGroupMembersIterator implements RecursiveIterator {
 				$groupName
 			);
 
-			$this->doFilterGroupMembers( $members, $groupName, $recipients );
+			$this->doFilterMembers( $members, $recipients, $groupName );
 		}
 
 		$this->current = array_values( $recipients );
 		$this->key++;
 	}
 
-	private function doFilterGroupMembers( $members, $groupName, &$recipients ) {
+	private function doFilterMembersByNotificationsToAssignment( $subject ) {
+
+		$recipients = array();
+
+		if ( $subject === null || $this->notificationsTo ) {
+			return $recipients;
+		}
+
+		$members = $this->store->getPropertyValues(
+			$subject,
+			new DIProperty( PropertyRegistry::NOTIFICATIONS_TO )
+		);
+
+		$this->doFilterMembers( $members, $recipients );
+		$this->notificationsTo = true;
+
+		return $recipients;
+	}
+
+	private function doFilterMembers( $members, &$recipients, $groupName = null ) {
 
 		foreach ( $members as $member ) {
 
@@ -198,7 +224,7 @@ class RecursiveGroupMembersIterator implements RecursiveIterator {
 				continue;
 			}
 
-			if ( Hooks::run( 'SMW::Notifications::UserCanReceiveNotification', array( $this->subject, $this->agentName, $groupName, $member ) ) === false ) {
+			if ( Hooks::run( 'SMW::Notifications::UserCanReceiveNotification', array( $this->store, $this->subject, $this->agentName, $member, $groupName ) ) === false ) {
 				continue;
 			}
 

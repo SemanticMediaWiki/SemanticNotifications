@@ -35,7 +35,7 @@ class UserLocator {
 			return array();
 		}
 
-		$store = ApplicationFactory::getInstance()->getStore( '\SMW\SQLStore\SQLStore' );
+		$store = ApplicationFactory::getInstance()->getStore();
 		$iteratorFactory = new IteratorFactory();
 
 		$notificationGroupsLocator = new NotificationGroupsLocator(
@@ -56,28 +56,28 @@ class UserLocator {
 			);
 		}
 
-		$recursiveGroupMemberIterator = $iteratorFactory->newRecursiveGroupMembersIterator(
+		$recursiveMembersIterator = $iteratorFactory->newRecursiveMembersIterator(
 			$groups,
 			$store
 		);
 
 		$agentName = $event->getAgent()->getName();
 
-		$recursiveGroupMemberIterator->notifyAgent(
+		$recursiveMembersIterator->notifyAgent(
 			$event->getExtraParam( 'notifyAgent', false )
 		);
 
-		$recursiveGroupMemberIterator->setAgentName(
+		$recursiveMembersIterator->setAgentName(
 			$agentName
 		);
 
-		$recursiveGroupMemberIterator->setSubject(
+		$recursiveMembersIterator->setSubject(
 			$extra['subject']
 		);
 
 		// Returns a flat array when iterating over the children
 		$recursiveIteratorIterator = $iteratorFactory->newRecursiveIteratorIterator(
-			$recursiveGroupMemberIterator
+			$recursiveMembersIterator
 		);
 
 		wfDebugLog( 'smw', 'Agent ' . $agentName );

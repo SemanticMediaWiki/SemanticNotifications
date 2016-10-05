@@ -4,7 +4,7 @@ namespace SMW\Notifications;
 
 use SMW\Store;
 use SMW\Notifications\Iterators\MappingIterator;
-use SMW\Notifications\Iterators\RecursiveGroupMembersIterator;
+use SMW\Notifications\Iterators\RecursiveMembersIterator;
 use SMW\Notifications\Iterators\ChildlessRecursiveIterator;
 use Iterator;
 use RecursiveIterator;
@@ -36,10 +36,10 @@ class IteratorFactory {
 	 * @param array|Iterator $iterator
 	 * @param Store $store
 	 *
-	 * @return RecursiveGroupMembersIterator
+	 * @return RecursiveMembersIterator
 	 */
-	public function newRecursiveGroupMembersIterator( $iterator, Store $store ) {
-		return new RecursiveGroupMembersIterator( $iterator, $store );
+	public function newRecursiveMembersIterator( $iterator, Store $store ) {
+		return new RecursiveMembersIterator( $iterator, $store );
 	}
 
 	/**

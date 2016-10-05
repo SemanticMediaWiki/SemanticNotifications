@@ -117,7 +117,7 @@ class ChangeNotificationFilterTest extends \PHPUnit_Framework_TestCase {
 			$this->store
 		);
 
-		$instance->hasChangeToNotifAbout(
+		$instance->hasChangeToNotifyAbout(
 			$compositePropertyTableDiffIterator
 		);
 
@@ -173,7 +173,7 @@ class ChangeNotificationFilterTest extends \PHPUnit_Framework_TestCase {
 			$this->store
 		);
 
-		$result = $instance->hasChangeToNotifAbout(
+		$result = $instance->hasChangeToNotifyAbout(
 			$compositePropertyTableDiffIterator
 		);
 
@@ -182,7 +182,7 @@ class ChangeNotificationFilterTest extends \PHPUnit_Framework_TestCase {
 		);
 	}
 
-	public function testhasChangeToNotifAbout_ChangeNotificationForAnyValue() {
+	public function testhasChangeToNotifyAbout_ChangeNotificationForAnyValue() {
 
 		$subject = DIWikiPage::newFromText( __METHOD__ );
 
@@ -239,7 +239,7 @@ class ChangeNotificationFilterTest extends \PHPUnit_Framework_TestCase {
 
 		$instance->setAgent( $agent );
 
-		$result = $instance->hasChangeToNotifAbout(
+		$result = $instance->hasChangeToNotifyAbout(
 			$compositePropertyTableDiffIterator
 		);
 
@@ -248,7 +248,7 @@ class ChangeNotificationFilterTest extends \PHPUnit_Framework_TestCase {
 		);
 	}
 
-	public function testhasChangeToNotifAbout_ChangeNotificationForDistinctValue() {
+	public function testhasChangeToNotifyAbout_ChangeNotificationForDistinctValue() {
 
 		$subject = DIWikiPage::newFromText( __METHOD__ );
 
@@ -312,7 +312,7 @@ class ChangeNotificationFilterTest extends \PHPUnit_Framework_TestCase {
 
 		$instance->setAgent( $agent );
 
-		$result = $instance->hasChangeToNotifAbout(
+		$result = $instance->hasChangeToNotifyAbout(
 			$compositePropertyTableDiffIterator
 		);
 
@@ -321,7 +321,7 @@ class ChangeNotificationFilterTest extends \PHPUnit_Framework_TestCase {
 		);
 	}
 
-	public function testhasChangeToNotifAbout_ChangeNotificationForPageValue() {
+	public function testhasChangeToNotifyAbout_ChangeNotificationForPageValue() {
 
 		$subject = DIWikiPage::newFromText( __METHOD__ );
 
@@ -381,7 +381,7 @@ class ChangeNotificationFilterTest extends \PHPUnit_Framework_TestCase {
 
 		$instance->setAgent( $agent );
 
-		$result = $instance->hasChangeToNotifAbout(
+		$result = $instance->hasChangeToNotifyAbout(
 			$compositePropertyTableDiffIterator
 		);
 
@@ -390,7 +390,7 @@ class ChangeNotificationFilterTest extends \PHPUnit_Framework_TestCase {
 		);
 	}
 
-	public function testhasChangeToNotifAbout_ChangeNotificationForSubobjectRelatedValue() {
+	public function testhasChangeToNotifyAbout_ChangeNotificationForSubobjectRelatedValue() {
 
 		$subject = DIWikiPage::newFromText( __METHOD__ );
 		$dataItem = DIWikiPage::newFromText( 'BAR', SMW_NS_PROPERTY );
@@ -480,7 +480,7 @@ class ChangeNotificationFilterTest extends \PHPUnit_Framework_TestCase {
 
 		$instance->setAgent( $agent );
 
-		$result = $instance->hasChangeToNotifAbout(
+		$result = $instance->hasChangeToNotifyAbout(
 			$compositePropertyTableDiffIterator
 		);
 

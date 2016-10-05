@@ -93,13 +93,13 @@ class ChangeNotificationFilter {
 	 *
 	 * @since 1.0
 	 *
-	 * @param boolean|null $hasChangeToNotifAbout
+	 * @param boolean|null $hasChangeToNotifyAbout
 	 *
 	 * @return array
 	 */
-	public function getEventRecord( $hasChangeToNotifAbout = false ) {
+	public function getEventRecord( $hasChangeToNotifyAbout = false ) {
 
-		if ( $this->subject === null || $this->type === null || !$hasChangeToNotifAbout ) {
+		if ( $this->subject === null || $this->type === null || !$hasChangeToNotifyAbout ) {
 			wfDebugLog( 'smw', 'EchoEvent was not triggered' );
 			return array();
 		}
@@ -125,7 +125,7 @@ class ChangeNotificationFilter {
 	 *
 	 * @return boolean|null
 	 */
-	public function hasChangeToNotifAbout( CompositePropertyTableDiffIterator $compositePropertyTableDiffIterator ) {
+	public function hasChangeToNotifyAbout( CompositePropertyTableDiffIterator $compositePropertyTableDiffIterator ) {
 
 		$start = microtime( true );
 		$this->type = self::VALUE_CHANGE;
