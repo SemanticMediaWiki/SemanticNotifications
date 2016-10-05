@@ -65,8 +65,7 @@ class EchoNotificationsManager {
 			'email-subject-message' => "notification-{$valueChangeNotificationType}-email-subject",
 			'email-subject-params' => array(
 				'user',
-				'agent',
-				'page-count'
+				'agent'
 			),
 			'email-body-batch-message' => "notification-{$valueChangeNotificationType}-email-batch-body",
 			'email-body-batch-params' => array(
@@ -102,8 +101,7 @@ class EchoNotificationsManager {
 			'email-subject-message' => "notification-{$valueChangeNotificationType}-email-subject",
 			'email-subject-params' => array(
 				'user',
-				'agent',
-				'page-count'
+				'agent'
 			),
 			'email-body-batch-message' => "notification-{$valueChangeNotificationType}-email-batch-body",
 			'email-body-batch-params' => array(
