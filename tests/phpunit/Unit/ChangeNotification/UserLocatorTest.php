@@ -103,6 +103,10 @@ class UserLocatorTest extends \PHPUnit_Framework_TestCase {
 			->method( 'getPropertySubjects' )
 			->will( $this->returnValue( array( DIWikiPage::newFromText( 'UserBar', NS_USER ) ) ) );
 
+		$this->store->expects( $this->once() )
+			->method( 'getPropertyValues' )
+			->will( $this->returnValue( array() ) );
+
 		$agent = $this->getMockBuilder( '\User' )
 			->disableOriginalConstructor()
 			->getMock();

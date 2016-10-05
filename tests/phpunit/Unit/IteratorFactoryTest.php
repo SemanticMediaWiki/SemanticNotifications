@@ -5,7 +5,7 @@ namespace SMW\Notifications\Tests;
 use RecursiveIterator;
 use SMW\Notifications\IteratorFactory;
 use SMW\Notifications\Iterators\MappingIterator;
-use SMW\Notifications\Iterators\RecursiveGroupMembersIterator;
+use SMW\Notifications\Iterators\RecursiveMembersIterator;
 use SMW\Notifications\Iterators\ChildlessRecursiveIterator;
 use RecursiveIteratorIterator;
 use SMW\Store;
@@ -31,7 +31,7 @@ class IteratorFactoryTest extends \PHPUnit_Framework_TestCase {
 		);
 	}
 
-	public function testCanConstructRecursiveGroupMembersIterator() {
+	public function testCanConstructRecursiveMembersIterator() {
 
 		$store = $this->getMockBuilder( Store::class )
 			->disableOriginalConstructor()
@@ -40,8 +40,8 @@ class IteratorFactoryTest extends \PHPUnit_Framework_TestCase {
 		$instance = new IteratorFactory();
 
 		$this->assertInstanceOf(
-			RecursiveGroupMembersIterator::class,
-			$instance->newRecursiveGroupMembersIterator( [], $store )
+			RecursiveMembersIterator::class,
+			$instance->newRecursiveMembersIterator( [], $store )
 		);
 	}
 

@@ -2,7 +2,7 @@
 
 namespace SMW\Notifications\Iterators\Tests;
 
-use SMW\Notifications\Iterators\RecursiveGroupMembersIterator;
+use SMW\Notifications\Iterators\RecursiveMembersIterator;
 use SMW\Tests\TestEnvironment;
 use RecursiveIteratorIterator;
 use SMW\Notifications\PropertyRegistry;
@@ -12,7 +12,7 @@ use SMWDIBlob as DIBlob;
 use ArrayIterator;
 
 /**
- * @covers \SMW\Notifications\Iterators\RecursiveGroupMembersIterator
+ * @covers \SMW\Notifications\Iterators\RecursiveMembersIterator
  * @group semantic-notifications
  *
  * @license GNU GPL v2+
@@ -20,7 +20,7 @@ use ArrayIterator;
  *
  * @author mwjames
  */
-class RecursiveGroupMembersIteratorTest extends \PHPUnit_Framework_TestCase {
+class RecursiveMembersIteratorTest extends \PHPUnit_Framework_TestCase {
 
 	private $store;
 	private $testEnvironment;
@@ -42,8 +42,8 @@ class RecursiveGroupMembersIteratorTest extends \PHPUnit_Framework_TestCase {
 	public function testCanConstruct() {
 
 		$this->assertInstanceOf(
-			RecursiveGroupMembersIterator::class,
-			new RecursiveGroupMembersIterator( array(), $this->store )
+			RecursiveMembersIterator::class,
+			new RecursiveMembersIterator( array(), $this->store )
 		);
 	}
 
@@ -51,7 +51,7 @@ class RecursiveGroupMembersIteratorTest extends \PHPUnit_Framework_TestCase {
 
 		$expected = array();
 
-		$instance = new RecursiveGroupMembersIterator(
+		$instance = new RecursiveMembersIterator(
 			array(),
 			$this->store
 		);
@@ -77,7 +77,7 @@ class RecursiveGroupMembersIteratorTest extends \PHPUnit_Framework_TestCase {
 				$this->anything() )
 			->will( $this->returnValue( array( DIWikiPage::newFromText( 'Bar', NS_USER ) ) ) );
 
-		$instance = new RecursiveGroupMembersIterator(
+		$instance = new RecursiveMembersIterator(
 			$group,
 			$this->store
 		);
@@ -110,7 +110,7 @@ class RecursiveGroupMembersIteratorTest extends \PHPUnit_Framework_TestCase {
 				DIWikiPage::newFromText( 'Bar', NS_USER ),
 				DIWikiPage::newFromText( 'Tanaka Hiro', NS_USER ) ) ) );
 
-		$instance = new RecursiveGroupMembersIterator(
+		$instance = new RecursiveMembersIterator(
 			$group,
 			$this->store
 		);
@@ -147,7 +147,7 @@ class RecursiveGroupMembersIteratorTest extends \PHPUnit_Framework_TestCase {
 				DIWikiPage::newFromText( 'Bar', NS_USER ),
 				DIWikiPage::newFromText( 'Foo', NS_USER ) ) ) );
 
-		$instance = new RecursiveGroupMembersIterator(
+		$instance = new RecursiveMembersIterator(
 			$group,
 			$this->store
 		);
@@ -186,13 +186,55 @@ class RecursiveGroupMembersIteratorTest extends \PHPUnit_Framework_TestCase {
 				$this->anything() )
 			->will( $this->returnValue( array( DIWikiPage::newFromText( 'Bar', NS_USER ) ) ) );
 
-		$instance = new RecursiveGroupMembersIterator(
+		$this->store->expects( $this->any() )
+			->method( 'getPropertyValues' )
+			->will( $this->returnValue( array() ) );
+
+		$instance = new RecursiveMembersIterator(
 			$group,
 			$this->store
 		);
 
 		$instance->setSubject(
 			DIWikiPage::newFromText( __METHOD__ )
+		);
+
+		foreach ( $instance as $value ) {
+			$this->assertEquals(
+				array( 'Bar' ),
+				$value
+			);
+		}
+	}
+
+	public function testFetchUsersByNotificationsTo() {
+
+		$group = array();
+
+		$property = new DIProperty(
+			PropertyRegistry::NOTIFICATIONS_TO
+		);
+
+		$subject = DIWikiPage::newFromText( __METHOD__ );
+
+		$this->store->expects( $this->exactly( 1 ) )
+			->method( 'getPropertyValues' )
+			->with(
+				$this->equalTo( $subject ),
+				$this->equalTo( $property ) )
+			->will( $this->returnValue( array( DIWikiPage::newFromText( 'Bar', NS_USER ) ) ) );
+
+		$this->store->expects( $this->any() )
+			->method( 'getPropertySubjects' )
+			->will( $this->returnValue( array() ) );
+
+		$instance = new RecursiveMembersIterator(
+			$group,
+			$this->store
+		);
+
+		$instance->setSubject(
+			$subject
 		);
 
 		foreach ( $instance as $value ) {
