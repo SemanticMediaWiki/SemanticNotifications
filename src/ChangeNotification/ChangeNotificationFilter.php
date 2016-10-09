@@ -145,8 +145,8 @@ class ChangeNotificationFilter {
 
 			// Skip the Modification date
 			if (
-				( $tableChangeOp->getFixedPropertyValueBy( 'key' ) === '_MDAT' ) ||
-				( $tableChangeOp->getFixedPropertyValueBy( 'key' ) === '_REDI' ) ) {
+				( $this->getFixedPropertyValueBy( $tableChangeOp, 'key' ) === '_MDAT' ) ||
+				( $this->getFixedPropertyValueBy( $tableChangeOp, 'key' ) === '_REDI' ) ) {
 				continue;
 			}
 
@@ -168,6 +168,11 @@ class ChangeNotificationFilter {
 		return $this->canNotify;
 	}
 
+	// 2.4 compat
+	private function getFixedPropertyValueBy( $tableChangeOp, $key ) {
+		return method_exists( $tableChangeOp, 'getFixedPropertyValueFor' ) ? $tableChangeOp->getFixedPropertyValueFor( $key ) : $tableChangeOp->getFixedPropertyValueBy( $key );
+	}
+
 	private function doFilterOnFieldChangeOps( $property, $tableChangeOp, $fieldChangeOps ) {
 
 		foreach ( $fieldChangeOps as $fieldChangeOp ) {
@@ -175,10 +180,10 @@ class ChangeNotificationFilter {
 			// _INST is special since the p_id doesn't play a role
 			// in determining the category page involved
 			if ( $tableChangeOp->isFixedPropertyOp() ) {
-				if ( $tableChangeOp->getFixedPropertyValueBy( 'key' ) === '_INST' ) {
+				if ( $this->getFixedPropertyValueBy( $tableChangeOp, 'key' ) === '_INST' ) {
 					$fieldChangeOp->set( 'p_id', $fieldChangeOp->get( 'o_id' ) );
 				} else {
-					$fieldChangeOp->set( 'p_id', $tableChangeOp->getFixedPropertyValueBy( 'p_id' ) );
+					$fieldChangeOp->set( 'p_id', $this->getFixedPropertyValueBy( $tableChangeOp, 'p_id' ) );
 				}
 			}
 
