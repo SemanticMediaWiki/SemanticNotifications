@@ -70,8 +70,7 @@ class EchoNotificationsManager {
 			'email-body-batch-message' => "notification-{$valueChangeNotificationType}-email-batch-body",
 			'email-body-batch-params' => array(
 				'title',
-				'agent',
-				'item'
+				'agent'
 			),
 			'icon' => $valueChangeNotificationType,
 		);
