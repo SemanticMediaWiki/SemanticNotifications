@@ -173,6 +173,11 @@ class ChangeNotificationFilter {
 		return method_exists( $tableChangeOp, 'getFixedPropertyValueFor' ) ? $tableChangeOp->getFixedPropertyValueFor( $key ) : $tableChangeOp->getFixedPropertyValueBy( $key );
 	}
 
+	// 2.4 compat
+	private function getDataItemById( $id ) {
+		return method_exists( $this->store->getObjectIds(), 'getDataItemForId' ) ?  $this->store->getObjectIds()->getDataItemForId( $id ) : $this->store->getObjectIds()->getDataItemById( $id );
+	}
+
 	private function doFilterOnFieldChangeOps( $property, $tableChangeOp, $fieldChangeOps ) {
 
 		foreach ( $fieldChangeOps as $fieldChangeOp ) {
@@ -189,7 +194,7 @@ class ChangeNotificationFilter {
 
 			// Get DI representation to build a DataValues that allows
 			// to match/compare values to its serialization form
-			$dataItem = $this->store->getObjectIds()->getDataItemById(
+			$dataItem = $this->getDataItemById(
 				$fieldChangeOp->get( 'p_id' )
 			);
 
@@ -293,7 +298,7 @@ class ChangeNotificationFilter {
 		} elseif ( $fieldChangeOp->has( 'o_id' ) ) {
 
 			// Page object entities
-			$oDataItem = $this->store->getObjectIds()->getDataItemById(
+			$oDataItem = $this->getDataItemById(
 				$fieldChangeOp->get( 'o_id' )
 			);
 /*
