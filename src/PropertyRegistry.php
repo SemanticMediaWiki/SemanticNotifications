@@ -44,7 +44,7 @@ class PropertyRegistry {
 	 *
 	 * @return boolean
 	 */
-	public function register( SemanticMediaWikiPropertyRegistry $propertyRegistry ) {
+	public function registerTo( SemanticMediaWikiPropertyRegistry $propertyRegistry ) {
 
 		$propertyDefinitions = array(
 

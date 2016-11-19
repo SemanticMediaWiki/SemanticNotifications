@@ -68,6 +68,16 @@ class ChangeNotificationFilter {
 	private $canNotify = false;
 
 	/**
+	 * @var array
+	 */
+	private $propertyExemptionList = array();
+
+	/**
+	 * @var boolean
+	 */
+	private $isCommandLineMode = false;
+
+	/**
 	 * @since 1.0
 	 *
 	 * @param DIWikiPage $subject
@@ -86,6 +96,43 @@ class ChangeNotificationFilter {
 	 */
 	public function setAgent( User $agent ) {
 		$this->agent = $agent;
+	}
+
+	/**
+	 * @since 1.0
+	 *
+	 * @param array $propertyExemptionList
+	 */
+	public function setPropertyExemptionList( array $propertyExemptionList ) {
+		$this->propertyExemptionList = array_flip(
+			str_replace( ' ', '_', $propertyExemptionList )
+		);
+	}
+
+	/**
+	 * @since 1.0
+	 *
+	 * @param boolean $isCommandLineMode
+	 */
+	public function isCommandLineMode( $isCommandLineMode ) {
+		$this->isCommandLineMode = $isCommandLineMode;
+	}
+
+	/**
+	 * @since 1.0
+	 *
+	 * @param CompositePropertyTableDiffIterator $compositePropertyTableDiffIterator
+	 *
+	 * @return array
+	 */
+	public function findChangeEvent( CompositePropertyTableDiffIterator $compositePropertyTableDiffIterator ) {
+
+		// Avoid notification when run from the commandLine
+		if ( $this->isCommandLineMode ) {
+			return array();
+		}
+
+		return $this->getEventRecord( $this->hasChangeToNotifyAbout( $compositePropertyTableDiffIterator ) );
 	}
 
 	/**
@@ -143,10 +190,7 @@ class ChangeNotificationFilter {
 
 		foreach ( $compositePropertyTableDiffIterator->getTableChangeOps() as $tableChangeOp ) {
 
-			// Skip the Modification date
-			if (
-				( $this->getFixedPropertyValueBy( $tableChangeOp, 'key' ) === '_MDAT' ) ||
-				( $this->getFixedPropertyValueBy( $tableChangeOp, 'key' ) === '_REDI' ) ) {
+			if ( isset( $this->propertyExemptionList[$this->getFixedPropertyValueBy( $tableChangeOp, 'key' )] ) ) {
 				continue;
 			}
 
@@ -198,7 +242,7 @@ class ChangeNotificationFilter {
 				$fieldChangeOp->get( 'p_id' )
 			);
 
-			if ( $dataItem === null || $dataItem->getDBKey() === '' ) {
+			if ( $dataItem === null || $dataItem->getDBKey() === '' || isset( $this->propertyExemptionList[$dataItem->getDBKey()] ) ) {
 				continue;
 			}
 

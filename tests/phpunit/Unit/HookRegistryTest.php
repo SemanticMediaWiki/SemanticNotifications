@@ -189,10 +189,6 @@ class HookRegistryTest extends \PHPUnit_Framework_TestCase {
 			->disableOriginalConstructor()
 			->getMock();
 
-		$compositePropertyTableDiffIterator->expects( $this->once() )
-			->method( 'getTableChangeOps' )
-			->will( $this->returnValue( array() ) );
-
 		$this->assertThatHookIsExcutable(
 			$instance->getHandlerFor( $handler ),
 			array( $store, $semanticData, $compositePropertyTableDiffIterator )

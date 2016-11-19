@@ -46,7 +46,7 @@ class NotificationGroupsLocatorTest extends \PHPUnit_Framework_TestCase {
 		);
 	}
 
-	public function testGetNotificationsToGroupListByCallback() {
+	public function testGetNotificationsToGroupListAsCallback() {
 
 		$instance = new NotificationGroupsLocator(
 			$this->store
@@ -56,7 +56,7 @@ class NotificationGroupsLocatorTest extends \PHPUnit_Framework_TestCase {
 
 		$this->assertInstanceOf(
 			'\Closure',
-			$instance->getNotificationsToGroupListByCallback( $subSemanticDataMatch )
+			$instance->getNotificationsToGroupListAsCallback( $subSemanticDataMatch )
 		);
 	}
 
