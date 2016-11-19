@@ -93,7 +93,7 @@ class NotificationGroupsLocator {
 	 *
 	 * @return Closure
 	 */
-	public function getNotificationsToGroupListByCallback( array $subSemanticDataMatch ) {
+	public function getNotificationsToGroupListAsCallback( array $subSemanticDataMatch ) {
 		return function( $dataItem ) use( $subSemanticDataMatch ) {
 			return $this->findNotificationsToGroupList( $dataItem, $subSemanticDataMatch );
 		};

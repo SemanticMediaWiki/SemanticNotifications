@@ -73,7 +73,7 @@ class HookRegistry {
 
 			$propertyRegistry = new PropertyRegistry();
 
-			$propertyRegistry->register(
+			$propertyRegistry->registerTo(
 				$baseRegistry
 			);
 
@@ -159,12 +159,16 @@ class HookRegistry {
 				$GLOBALS['wgUser']
 			);
 
-			$hasChangeToNotifyAbout = $changeNotificationFilter->hasChangeToNotifyAbout(
-				$compositePropertyTableDiffIterator
+			$changeNotificationFilter->setPropertyExemptionList(
+				$GLOBALS['snogChangeNotificationDetectionPropertyExemptionList']
+			);
+
+			$changeNotificationFilter->isCommandLineMode(
+				$GLOBALS['wgCommandLineMode']
 			);
 
 			$echoNotificationsManager->createEvent(
-				$changeNotificationFilter->getEventRecord( $hasChangeToNotifyAbout )
+				$changeNotificationFilter->findChangeEvent( $compositePropertyTableDiffIterator )
 			);
 
 			return true;

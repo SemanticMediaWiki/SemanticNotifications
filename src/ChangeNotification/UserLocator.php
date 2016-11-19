@@ -52,7 +52,7 @@ class UserLocator {
 			// iteration process
 			$groups = $iteratorFactory->newMappingIterator(
 				$extra['properties'],
-				$notificationGroupsLocator->getNotificationsToGroupListByCallback( $subSemanticDataMatch )
+				$notificationGroupsLocator->getNotificationsToGroupListAsCallback( $subSemanticDataMatch )
 			);
 		}
 

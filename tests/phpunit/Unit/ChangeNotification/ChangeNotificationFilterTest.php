@@ -173,6 +173,11 @@ class ChangeNotificationFilterTest extends \PHPUnit_Framework_TestCase {
 			$this->store
 		);
 
+		$instance->setPropertyExemptionList( array(
+			'_MDAT',
+			'_REDI'
+		) );
+
 		$result = $instance->hasChangeToNotifyAbout(
 			$compositePropertyTableDiffIterator
 		);
