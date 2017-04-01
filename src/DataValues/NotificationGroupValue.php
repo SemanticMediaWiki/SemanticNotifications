@@ -22,6 +22,14 @@ use SpecialPage;
  */
 class NotificationGroupValue extends StringValue {
 
+	/**
+	 * DV identifier
+	 */
+	const TYPE_ID = '_notification_group';
+
+	/**
+	 * Special group name
+	 */
 	const SPECIAL_GROUP = 'smw-notifications-entity-specification-change-group';
 
 	/**

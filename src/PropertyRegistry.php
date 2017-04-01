@@ -3,6 +3,7 @@
 namespace SMW\Notifications;
 
 use SMW\PropertyRegistry as SemanticMediaWikiPropertyRegistry;
+use SMW\Notifications\DataValues\NotificationGroupValue;
 
 define( 'SMW_NOTIFICATIONS_ON', 'Notifications on' );
 define( 'SMW_NOTIFICATIONS_TO_GROUP', 'Notifications to group' );
@@ -53,8 +54,8 @@ class PropertyRegistry {
 				'type'  => '_txt',
 				'alias' => array( wfMessage( 'smw-notifications-property-alias-notifications-on' )->text() ),
 				'msgkey' => 'smw-notifications-property-alias-notifications-on',
-				'visibility' => true,
-				'annotableByUser'  => true
+				'visible' => true,
+				'annotable' => true
 			),
 
 			self::NOTIFICATIONS_TO_GROUP => array(
@@ -62,17 +63,17 @@ class PropertyRegistry {
 				'type'  => '_txt',
 				'alias' => array( wfMessage( 'smw-notifications-property-alias-notifications-to-group' )->text() ),
 				'msgkey' => 'smw-notifications-property-alias-notifications-to-group',
-				'visibility' => true,
-				'annotableByUser'  => true
+				'visible' => true,
+				'annotable' => true
 			),
 
 			self::NOTIFICATIONS_GROUP_MEMBER_OF => array(
 				'label' => SMW_NOTIFICATIONS_GROUP_MEMBER_OF,
-				'type'  => '_notification_group',
+				'type'  => NotificationGroupValue::TYPE_ID,
 				'alias' => array( wfMessage( 'smw-notifications-property-alias-notifications-group-member-of' )->text() ),
 				'msgkey' => 'smw-notifications-property-alias-notifications-group',
-				'visibility' => true,
-				'annotableByUser'  => true
+				'visible' => true,
+				'annotable' => true
 			),
 
 			self::NOTIFICATIONS_TO => array(
@@ -80,20 +81,20 @@ class PropertyRegistry {
 				'type'  => '_wpg',
 				'alias' => array( wfMessage( 'smw-notifications-property-alias-notifications-to' )->text() ),
 				'msgkey' => 'smw-notifications-property-alias-notifications-to',
-				'visibility' => true,
-				'annotableByUser'  => true
+				'visible' => true,
+				'annotable' => true
 			)
 		);
 
-		foreach ( $propertyDefinitions as $propertyId => $definition ) {
-			$this->addPropertyDefinitionFor( $propertyRegistry, $propertyId, $definition  );
+		foreach ( $propertyDefinitions as $id => $definition ) {
+			$this->addPropertyDefinition( $propertyRegistry, $id, $definition );
 		}
 
-		foreach ( $propertyDefinitions as $propertyId => $definition ) {
+		foreach ( $propertyDefinitions as $id => $definition ) {
 			// 2.4+
 			if ( method_exists( $propertyRegistry, 'registerPropertyAliasByMsgKey' ) ) {
 				$propertyRegistry->registerPropertyAliasByMsgKey(
-					$propertyId,
+					$id,
 					$definition['msgkey']
 				);
 			}
@@ -102,19 +103,19 @@ class PropertyRegistry {
 		return true;
 	}
 
-	private function addPropertyDefinitionFor( $propertyRegistry, $propertyId, $definition ) {
+	private function addPropertyDefinition( $propertyRegistry, $id, $definition ) {
 
 		$propertyRegistry->registerProperty(
-			$propertyId,
+			$id,
 			$definition['type'],
 			$definition['label'],
-			$definition['visibility'],
-			$definition['annotableByUser']
+			$definition['visible'],
+			$definition['annotable']
 		);
 
 		foreach ( $definition['alias'] as $alias ) {
 			$propertyRegistry->registerPropertyAlias(
-				$propertyId,
+				$id,
 				$alias
 			);
 		}
