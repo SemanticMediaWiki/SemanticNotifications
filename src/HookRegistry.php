@@ -5,6 +5,7 @@ namespace SMW\Notifications;
 use SMW\Notifications\EchoPresentationModel;
 use SMW\Notifications\EchoFormatter;
 use SMW\Notifications\ChangeNotification\ChangeNotificationFilter;
+use SMW\Notifications\DataValues\NotificationGroupValue;
 use SMWDataItem as DataItem;
 use Hooks;
 use EchoEvent;
@@ -86,7 +87,7 @@ class HookRegistry {
 		$this->handlers['SMW::DataType::initTypes'] = function ( $dataTypeRegistry ) {
 
 			$dataTypeRegistry->registerDatatype(
-				'_notification_group',
+				NotificationGroupValue::TYPE_ID,
 				'\SMW\Notifications\DataValues\NotificationGroupValue',
 				DataItem::TYPE_BLOB
 			);
@@ -104,7 +105,7 @@ class HookRegistry {
 		 */
 		$this->handlers['BeforeCreateEchoEvent'] = function( array &$notifications, array &$notificationCategories, array &$icons ) use ( $echoNotificationsManager ) {
 
-			$echoNotificationsManager->addNotificationsDefinitions(
+			$echoNotificationsManager->initNotificationsDefinitions(
 				$notifications,
 				$notificationCategories,
 				$icons

@@ -17,7 +17,7 @@ use SMW\DIWikiPage;
  */
 class EchoNotificationsManagerTest extends \PHPUnit_Framework_TestCase {
 
-	public function testAddNotificationsDefinitions() {
+	public function testInitNotificationsDefinitions() {
 
 		$instance = new EchoNotificationsManager();
 
@@ -25,7 +25,7 @@ class EchoNotificationsManagerTest extends \PHPUnit_Framework_TestCase {
 		$notificationCategories = array();
 		$icons = array();
 
-		$instance->addNotificationsDefinitions(
+		$instance->initNotificationsDefinitions(
 			$notifications,
 			$notificationCategories,
 			$icons

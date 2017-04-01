@@ -25,7 +25,7 @@ class EchoNotificationsManager {
 	 * @param array &$notificationCategories
 	 * @param array &$icons
 	 */
-	public function addNotificationsDefinitions( array &$notifications, array &$notificationCategories, array &$icons ) {
+	public static function initNotificationsDefinitions( array &$notifications, array &$notificationCategories, array &$icons ) {
 
 		$valueChangeNotificationType = ChangeNotificationFilter::VALUE_CHANGE;
 		$specificationChangeNotificationType = ChangeNotificationFilter::SPECIFICATION_CHANGE;

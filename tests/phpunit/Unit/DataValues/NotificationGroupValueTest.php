@@ -4,6 +4,7 @@ namespace SMW\Notifications\Tests;
 
 use SMW\Notifications\DataValues\NotificationGroupValue;
 use SMW\Notifications\PropertyRegistry;
+use SMW\DataValueFactory;
 use SMW\DIWikiPage;
 use SMW\DIProperty;
 use SMWDIBlob as DIBlob;
@@ -22,6 +23,7 @@ class NotificationGroupValueTest extends \PHPUnit_Framework_TestCase {
 
 	private $store;
 	private $testEnvironment;
+	private $dataValueFactory;
 
 	protected function setUp() {
 
@@ -31,6 +33,7 @@ class NotificationGroupValueTest extends \PHPUnit_Framework_TestCase {
 
 		$this->testEnvironment = new TestEnvironment();
 		$this->testEnvironment->registerObject( 'Store', $this->store );
+		$this->dataValueFactory = DataValueFactory::getInstance();
 	}
 
 	protected function tearDown() {
@@ -55,7 +58,7 @@ class NotificationGroupValueTest extends \PHPUnit_Framework_TestCase {
 
 	public function testTryToSetUserValueOnMissingContext() {
 
-		$instance = new NotificationGroupValue( '' );
+		$instance = $this->dataValueFactory->newDataValueByType( NotificationGroupValue::TYPE_ID );
 		$instance->setUserValue( 'Foo' );
 
 		$this->assertSame(
@@ -66,7 +69,7 @@ class NotificationGroupValueTest extends \PHPUnit_Framework_TestCase {
 
 	public function testTryToSetUserValueOnMissingUserContext() {
 
-		$instance = new NotificationGroupValue( '' );
+		$instance = $this->dataValueFactory->newDataValueByType( NotificationGroupValue::TYPE_ID );
 
 		$instance->setContextPage(
 			DIWikiPage::newFromText( __METHOD__ )
@@ -82,7 +85,7 @@ class NotificationGroupValueTest extends \PHPUnit_Framework_TestCase {
 
 	public function testSetUserValueWithSpecialGroup() {
 
-		$instance = new NotificationGroupValue( '' );
+		$instance = $this->dataValueFactory->newDataValueByType( NotificationGroupValue::TYPE_ID );
 		$instance->setUserValue( NotificationGroupValue::getSpecialGroupName( 'en' ) );
 
 		$this->assertSame(
@@ -104,7 +107,7 @@ class NotificationGroupValueTest extends \PHPUnit_Framework_TestCase {
 				$this->anything() )
 			->will( $this->returnValue( array( 'OnlyCompareWhetherItIsAvailableOrNot' ) ) );
 
-		$instance = new NotificationGroupValue( '' );
+		$instance = $this->dataValueFactory->newDataValueByType( NotificationGroupValue::TYPE_ID );
 
 		$instance->setContextPage(
 			DIWikiPage::newFromText( __METHOD__, NS_USER )
@@ -131,7 +134,7 @@ class NotificationGroupValueTest extends \PHPUnit_Framework_TestCase {
 				$this->anything() )
 			->will( $this->returnValue( array() ) );
 
-		$instance = new NotificationGroupValue( '' );
+		$instance = $this->dataValueFactory->newDataValueByType( NotificationGroupValue::TYPE_ID );
 
 		$instance->setContextPage(
 			DIWikiPage::newFromText( __METHOD__, NS_USER )
@@ -151,7 +154,7 @@ class NotificationGroupValueTest extends \PHPUnit_Framework_TestCase {
 			->method( 'getPropertySubjects' )
 			->will( $this->returnValue( array( 'WasMentionedAsGroup' ) ) );
 
-		$instance = new NotificationGroupValue( '' );
+		$instance = $this->dataValueFactory->newDataValueByType( NotificationGroupValue::TYPE_ID );
 
 		$instance->setContextPage(
 			DIWikiPage::newFromText( __METHOD__, NS_USER )
@@ -183,7 +186,7 @@ class NotificationGroupValueTest extends \PHPUnit_Framework_TestCase {
 
 	public function testSetDataItem() {
 
-		$instance = new NotificationGroupValue( '' );
+		$instance = $this->dataValueFactory->newDataValueByType( NotificationGroupValue::TYPE_ID );
 
 		$instance->setDataItem(
 			new DIBlob( 'Foo' )
@@ -212,7 +215,7 @@ class NotificationGroupValueTest extends \PHPUnit_Framework_TestCase {
 
 	public function testEmptyDataValue() {
 
-		$instance = new NotificationGroupValue( '' );
+		$instance = $this->dataValueFactory->newDataValueByType( NotificationGroupValue::TYPE_ID );
 
 		$this->assertEmpty(
 			'',

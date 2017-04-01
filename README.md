@@ -19,7 +19,7 @@ Support for notifications on:
 ## Requirements
 
 - PHP 5.5 or later
-- MediaWiki 1.26 or later
+- MediaWiki 1.27 or later
 - [Echo(Notifications)][echo] ...
 - [Semantic MediaWiki][smw] 2.4 or later
 
@@ -48,7 +48,7 @@ The recommended way to install Semantic Notifications is by using [Composer][com
 The [workflow document](docs/01-workflow.md) contains a detailed description about the required
 settings and decisions a user has to make in order for him or her to receive notifications.
 
-Additional tips and use cases can be found [here](docs/02-tips.md) while [this document](docs/03-technical notes.md)
+Additional tips and use cases can be found [here](docs/02-tips.md) while [this document](docs/03-technical.md)
 describes some technical details.
 
 ## Contribution and support
