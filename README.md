@@ -5,7 +5,6 @@
 [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/SemanticMediaWiki/SemanticNotifications/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/SemanticMediaWiki/SemanticNotifications/?branch=master)
 [![Latest Stable Version](https://poser.pugx.org/mediawiki/semantic-notifications/version.png)](https://packagist.org/packages/mediawiki/semantic-notifications)
 [![Packagist download count](https://poser.pugx.org/mediawiki/semantic-notifications/d/total.png)](https://packagist.org/packages/mediawiki/semantic-notifications)
-[![Dependency Status](https://www.versioneye.com/php/mediawiki:semantic-notifications/badge.png)](https://www.versioneye.com/php/mediawiki:semantic-notifications)
 
 Semantic Notifications (a.k.a. SNO) is a [Semantic Mediawiki][smw] extension that can inform registered users about
 changes to their structured data with help of the [Echo(Notifications)][echo] extension.
@@ -58,7 +57,7 @@ have a look at the contribution guideline.
 
 * [File an issue](https://github.com/SemanticMediaWiki/SemanticNotifications/issues)
 * [Submit a pull request](https://github.com/SemanticMediaWiki/SemanticNotifications/pulls)
-* Ask a question on [the mailing list](https://semantic-mediawiki.org/wiki/Mailing_list)
+* Ask a question on [the mailing list](https://www.semantic-mediawiki.org/wiki/Mailing_list)
 * Ask a question on the #semantic-mediawiki IRC channel on Freenode.
 
 ## Tests
