@@ -65,7 +65,7 @@ class SemanticNotifications {
 			'url'            => 'https://github.com/SemanticMediaWiki/SemanticNotifications/',
 			'descriptionmsg' => 'smw-notifications-desc',
 			'version'        => SMW_NOTIFICATIONS_VERSION,
-			'license-name'   => 'GPL-2.0+',
+			'license-name'   => 'GPL-2.0-or-later'
 		);
 
 		// Register message files
