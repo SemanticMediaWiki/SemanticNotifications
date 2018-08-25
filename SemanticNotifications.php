@@ -41,7 +41,7 @@ class SemanticNotifications {
 			'_REDI'
 		);
 
-		// In case extension.json is being used, the the succeeding steps are
+		// In case extension.json is being used, the succeeding steps are
 		// expected to be handled by the ExtensionRegistry
 		self::initExtension();
 
