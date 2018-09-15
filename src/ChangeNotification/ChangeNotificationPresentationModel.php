@@ -114,7 +114,11 @@ class ChangeNotificationPresentationModel extends EchoEventPresentationModel {
 				$prefix = $this->language->getNsText( NS_CATEGORY ) . ':';
 			}
 
-			$labels[] = $prefix . DIProperty::newFromUserLabel( $dataItem->getDBKey() )->getLabel();
+			try {
+				$labels[] = $prefix . DIProperty::newFromUserLabel( $dataItem->getDBKey() )->getLabel();
+			} catch ( \SMW\Exception\PredefinedPropertyLabelMismatchException $e ) {
+				continue;
+			}
 		}
 
 		$msg = wfMessage( "notification-body-{$this->type}" );
