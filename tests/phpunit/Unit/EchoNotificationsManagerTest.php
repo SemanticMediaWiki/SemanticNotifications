@@ -112,7 +112,7 @@ class EchoNotificationsManagerTest extends \PHPUnit_Framework_TestCase {
 		);
 
 		$this->assertSame(
-			'Foo#0#1001',
+			'Foo#0##1001',
 			$bundleString
 		);
 	}

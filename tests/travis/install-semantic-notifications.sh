@@ -70,14 +70,19 @@ function updateConfiguration {
 		echo '$wgLanguageCode = "'$SITELANG'";' >> LocalSettings.php
 	fi
 
-	echo 'require_once "$IP/extensions/Echo/Echo.php";' >> LocalSettings.php
+	if [ "$ECHO" == "REL1_31" ]
+	then
+		echo 'wfLoadExtension( "Echo" );' >> LocalSettings.php
+	else
+		echo 'require_once "$IP/extensions/Echo/Echo.php";' >> LocalSettings.php
+	fi
 
 	echo 'error_reporting(E_ALL| E_STRICT);' >> LocalSettings.php
 	echo 'ini_set("display_errors", 1);' >> LocalSettings.php
 	echo '$wgShowExceptionDetails = true;' >> LocalSettings.php
 	echo '$wgDevelopmentWarnings = true;' >> LocalSettings.php
 	echo "putenv( 'MW_INSTALL_PATH=$(pwd)' );" >> LocalSettings.php
-	
+
 	# SMW#1732
 	echo 'wfLoadExtension( "SemanticMediaWiki" );' >> LocalSettings.php
 

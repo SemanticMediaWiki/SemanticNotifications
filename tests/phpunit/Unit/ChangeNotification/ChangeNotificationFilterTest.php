@@ -128,7 +128,7 @@ class ChangeNotificationFilterTest extends \PHPUnit_Framework_TestCase {
 					'notifyAgent' => false,
 					'revid' => 0,
 					'properties' => array(
-						'FOO#102#' => $dataItem
+						'FOO#102##' => $dataItem
 					),
 					'subSemanticDataMatch' => array(),
 					'subject' => $subject
