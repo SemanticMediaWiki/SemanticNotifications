@@ -263,7 +263,7 @@ class ChangeNotificationFilter {
 
 	private function doCompareNotificationsOnValuesWithOps( $property, $dataItem, $fieldChangeOp ) {
 
-		$cachedPropertyValuesPrefetcher = ApplicationFactory::getInstance()->getCachedPropertyValuesPrefetcher();
+		$propertySpecificationLookup = ApplicationFactory::getInstance()->getPropertySpecificationLookup();
 
 		// Don't mix !!
 		// Either use the plain annotation style via [[Notifications on:: ...]] OR
@@ -273,7 +273,7 @@ class ChangeNotificationFilter {
 		//  |Notifications on=...
 		//  |Notifications to group=...
 		// }}
-		if ( ( $pv = $cachedPropertyValuesPrefetcher->getPropertyValues( $dataItem, $property ) ) !== array() ) {
+		if ( ( $pv = $propertySpecificationLookup->getSpecification( $dataItem, $property ) ) !== array() ) {
 			return $this->doCompareOnPropertyValues( $dataItem, $pv, $fieldChangeOp );
 		}
 
