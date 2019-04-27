@@ -4,6 +4,7 @@ namespace SMW\Notifications\Iterators\Tests;
 
 use SMW\Notifications\Iterators\ChildlessRecursiveIterator;
 use RecursiveIteratorIterator;
+use SMW\Tests\PHPUnitCompat;
 
 /**
  * @covers \SMW\Notifications\Iterators\ChildlessRecursiveIterator
@@ -15,6 +16,8 @@ use RecursiveIteratorIterator;
  * @author mwjames
  */
 class ChildlessRecursiveIteratorTest extends \PHPUnit_Framework_TestCase {
+
+	use PHPUnitCompat;
 
 	public function testCanConstruct() {
 

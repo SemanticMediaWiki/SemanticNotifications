@@ -1,0 +1,27 @@
+{
+	"name": "SemanticNotifications",
+	"version": "0.1-alpha",
+	"author": [
+		"James Hong Kong",
+		"..."
+	],
+	"url": "https://github.com/SemanticMediaWiki/SemanticNotifications/",
+	"descriptionmsg": "semantic-notifications-desc",
+	"namemsg": "semantic-notifications-name",
+	"license-name": "GPL-2.0-or-later",
+	"type": "semantic",
+	"requires": {
+		"MediaWiki": ">= 1.31"
+	},
+	"MessagesDirs": {
+		"SemanticNotifications": [
+			"i18n"
+		]
+	},
+	"callback": "SemanticNotifications::initExtension",
+	"ExtensionFunctions": [
+		"SemanticNotifications::onExtensionFunction"
+	],
+	"load_composer_autoloader":true,
+	"manifest_version": 1
+}

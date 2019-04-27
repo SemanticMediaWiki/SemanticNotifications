@@ -4,6 +4,7 @@ namespace SMW\Notifications\Iterators\Tests;
 
 use SMW\Notifications\Iterators\MappingIterator;
 use ArrayIterator;
+use SMW\Tests\PHPUnitCompat;
 
 /**
  * @covers \SMW\Notifications\Iterators\MappingIterator
@@ -15,6 +16,8 @@ use ArrayIterator;
  * @author mwjames
  */
 class MappingIteratorTest extends \PHPUnit_Framework_TestCase {
+
+	use PHPUnitCompat;
 
 	public function testCanConstruct() {
 
