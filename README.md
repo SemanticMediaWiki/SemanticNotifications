@@ -7,7 +7,7 @@
 [![Packagist download count](https://poser.pugx.org/mediawiki/semantic-notifications/d/total.png)](https://packagist.org/packages/mediawiki/semantic-notifications)
 
 Semantic Notifications (a.k.a. SNO) is a [Semantic Mediawiki][smw] extension that can inform registered users about
-changes to their structured data with help of the [Echo(Notifications)][echo] extension.
+changes to their structured data with the help of notifications send by the [Echo][echo] extension.
 
 Support for notifications on:
 
@@ -17,10 +17,10 @@ Support for notifications on:
 
 ## Requirements
 
-- PHP 5.5 or later
-- MediaWiki 1.27 or later
-- [Echo(Notifications)][echo] ...
-- [Semantic MediaWiki][smw] 2.4 or later
+- PHP 5.6 or later
+- MediaWiki 1.31 or later
+- [Echo (Notifications)][echo] ??
+- [Semantic MediaWiki][smw] 3.0 or later
 
 ## Installation
 

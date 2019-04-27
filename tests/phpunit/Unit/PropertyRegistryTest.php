@@ -30,7 +30,7 @@ class PropertyRegistryTest extends \PHPUnit_Framework_TestCase {
 			->disableOriginalConstructor()
 			->getMock();
 
-		$propertyRegistry->expects( $this->any() )
+		$propertyRegistry->expects( $this->atLeastOnce() )
 			->method( 'registerProperty' )
 			->withConsecutive(
 				[ $this->equalTo( PropertyRegistry::NOTIFICATIONS_ON ) ],
