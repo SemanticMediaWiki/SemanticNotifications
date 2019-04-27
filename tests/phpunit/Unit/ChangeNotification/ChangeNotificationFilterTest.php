@@ -19,7 +19,7 @@ use SMW\Tests\TestEnvironment;
 class ChangeNotificationFilterTest extends \PHPUnit_Framework_TestCase {
 
 	private $store;
-	private $cachedPropertyValuesPrefetcher;
+	private $propertySpecificationLookup;
 	private $testEnvironment;
 
 	protected function setUp() {
@@ -28,14 +28,14 @@ class ChangeNotificationFilterTest extends \PHPUnit_Framework_TestCase {
 			->disableOriginalConstructor()
 			->getMock();
 
-		$this->cachedPropertyValuesPrefetcher = $this->getMockBuilder( '\SMW\CachedPropertyValuesPrefetcher' )
+		$this->propertySpecificationLookup = $this->getMockBuilder( '\SMW\PropertySpecificationLookup' )
 			->disableOriginalConstructor()
 			->getMock();
 
 		$this->testEnvironment = new TestEnvironment();
 
 		$this->testEnvironment->registerObject( 'Store', $this->store );
-		$this->testEnvironment->registerObject( 'CachedPropertyValuesPrefetcher', $this->cachedPropertyValuesPrefetcher );
+		$this->testEnvironment->registerObject( 'PropertySpecificationLookup', $this->propertySpecificationLookup );
 	}
 
 	protected function tearDown() {
@@ -220,8 +220,8 @@ class ChangeNotificationFilterTest extends \PHPUnit_Framework_TestCase {
 			->method( 'getObjectIds' )
 			->will( $this->returnValue( $idTable ) );
 
-		$this->cachedPropertyValuesPrefetcher->expects( $this->any() )
-			->method( 'getPropertyValues' )
+		$this->propertySpecificationLookup->expects( $this->any() )
+			->method( 'getSpecification' )
 			->will( $this->returnValue( array( new DIBlob( '+' ) ) ) ); //Any value
 
 		$compositePropertyTableDiffIterator = $this->getMockBuilder( '\SMW\SQLStore\CompositePropertyTableDiffIterator' )
@@ -293,8 +293,8 @@ class ChangeNotificationFilterTest extends \PHPUnit_Framework_TestCase {
 			->method( 'getObjectIds' )
 			->will( $this->returnValue( $idTable ) );
 
-		$this->cachedPropertyValuesPrefetcher->expects( $this->any() )
-			->method( 'getPropertyValues' )
+		$this->propertySpecificationLookup->expects( $this->any() )
+			->method( 'getSpecification' )
 			->will( $this->returnValue( array( new DIBlob( 'DistinctText' ) ) ) ); //Distinct value
 
 		$compositePropertyTableDiffIterator = $this->getMockBuilder( '\SMW\SQLStore\CompositePropertyTableDiffIterator' )
@@ -362,8 +362,8 @@ class ChangeNotificationFilterTest extends \PHPUnit_Framework_TestCase {
 			->method( 'getObjectIds' )
 			->will( $this->returnValue( $idTable ) );
 
-		$this->cachedPropertyValuesPrefetcher->expects( $this->any() )
-			->method( 'getPropertyValues' )
+		$this->propertySpecificationLookup->expects( $this->any() )
+			->method( 'getSpecification' )
 			->will( $this->returnValue( array( new DIBlob( 'BAR' ) ) ) ); //Distinct value
 
 		$compositePropertyTableDiffIterator = $this->getMockBuilder( '\SMW\SQLStore\CompositePropertyTableDiffIterator' )
@@ -461,8 +461,8 @@ class ChangeNotificationFilterTest extends \PHPUnit_Framework_TestCase {
 			->with( $this->equalTo( $dataItem ) )
 			->will( $this->returnValue( $semanticData ) );
 
-		$this->cachedPropertyValuesPrefetcher->expects( $this->any() )
-			->method( 'getPropertyValues' )
+		$this->propertySpecificationLookup->expects( $this->any() )
+			->method( 'getSpecification' )
 			->will( $this->returnValue( array() ) );
 
 		$compositePropertyTableDiffIterator = $this->getMockBuilder( '\SMW\SQLStore\CompositePropertyTableDiffIterator' )
