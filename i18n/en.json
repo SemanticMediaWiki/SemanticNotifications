@@ -1,10 +1,13 @@
 {
 	"@metadata": {
 		"authors": [
-			"mwjames"
+			"Kghbln",
+			"MWJames"
 		]
 	},
-	"smw-notifications-desc": "A Semantic MediaWiki extension that notifies about changes to structured data using the Echo(Notifications) extension.",
+	"semantic-notifications-desc": "Notifies users about changes to structured data",
+	"semantic-notifications-name": "Semantic Notifications",
+	
 	"smw-notifications-entity-specification-change-group": "entity specification change group",
 
 	"echo-category-title-smw-value-change": "Entity value change (SMW)",
