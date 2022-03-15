@@ -58,7 +58,7 @@ have a look at the contribution guideline.
 * [File an issue](https://github.com/SemanticMediaWiki/SemanticNotifications/issues)
 * [Submit a pull request](https://github.com/SemanticMediaWiki/SemanticNotifications/pulls)
 * Ask a question on [the mailing list](https://www.semantic-mediawiki.org/wiki/Mailing_list)
-* Ask a question on the #semantic-mediawiki IRC channel on Freenode.
+* Ask a question on the #semantic-mediawiki IRC channel on Libera.
 
 ## Tests
 
